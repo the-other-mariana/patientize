@@ -1,0 +1,44 @@
+{{# if success }}
+  <section>
+    <div class="row panel panel-success">
+
+      <div class="panel-heading"><h4>Hello, {{ user }}</h4></div>
+      <div class="panel-body">
+        <form>
+          <button type = "submit" formaction="/additem" formmethod="post">Add Item</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+{{else}}
+  {{# if errors}}
+    <section class="errors">
+      <ul>
+        {{# each errors }}
+          <li>{{ this.msg }}</li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
+  <div class="row panel panel-default">
+
+      <div class="panel-heading">Log in with your account: </div>
+      <div class="panel-body">
+        <form>
+          <div class = "input">
+            <label for = "loginusername" style = "display: block;"> Username: </label>
+            <input type = "text" id = "loginusername" name = "loginusername">
+          </div>
+          <div class = "input">
+            <label for = "loginpassword" style = "display: block;"> Password: </label>
+            <input type = "password" id = "loginpassword" name = "loginpassword">
+          </div>
+          <button type = "submit" formaction="/login" formmethod="post">Log In</button>
+          <button type = "submit" formaction="/register" formmethod="post">Register</button>
+          <button type = "submit" formaction="/restart-db" formmethod="post">Restart DB</button>
+        </form>
+      </div>
+  </div>
+{{/if}}
+
