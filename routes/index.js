@@ -5,6 +5,7 @@ const url = 'mongodb://localhost:27017/patientizedb';
 
 var currUser = null;
 var loggedUser = "";
+var successLog = false;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -149,9 +150,11 @@ router.post('/login', function(req, res, next){
         req.session.mongoID = objectID;
         console.log("successfull validation of " + objectID);
         loggedUser = req.session.user;
+        successLog = true;
         console.log("logged user: " + req.session.user);
         res.redirect('/');
       }else{
+        successLog = false;
         req.session.success = false;
         req.session.user = "";
         req.session.mongoID = null;
@@ -195,6 +198,45 @@ router.get('/mainInfo', function(req, res, next) {
   console.log(currUser);
   res.send(currUser);
 
+});
+
+
+router.post('/updateInfo', function(req, res, next){
+  var newvalues={};
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+        
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: req.body.upname,
+          profilePic: doc.profilePic, 
+          specialty: req.body.upspecialty,
+          gender: doc.gender,
+          email: req.body.upemail, 
+          mobile: req.body.upmobile,
+          patients: doc.patients
+        };
+
+        currUser = newvalues;
+        
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
+  res.render('index', {title: 'Patientize', success: successLog, user: loggedUser});
 });
 
 module.exports = router;

@@ -24,3 +24,7 @@ The app starts with a simple login. <br />
 You can register as follows: <br />
 
 ![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/register.png?raw=true) <br />
+
+When you enter and edit your information it looks like this: <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-info.png?raw=true) <br />
