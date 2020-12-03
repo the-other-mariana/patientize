@@ -3,6 +3,9 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/patientizedb';
 
+var currUser = null;
+var loggedUser = "";
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Patientize', success: req.session.success, errors: req.session.errors, user: req.session.user });
@@ -63,8 +66,16 @@ router.post('/register/submit-account', function(req, res, next){
   var inputPassword = req.body.password;
   var inputSpecialty = req.body.specialty;
   var inputGender = req.body.gender;
+  var inputFullName = req.body.fullname;
 
-  var loggedUser = req.session.user;
+  var profilePic = "";
+
+  if (inputGender == "female"){
+    profilePic = "default-female.png";
+  } else{
+    profilePic = "default-male.png";
+  }
+
   var userID = "";
   var objectID = null;
 
@@ -72,8 +83,12 @@ router.post('/register/submit-account', function(req, res, next){
   var item = {
     username: inputUsername,
     password: inputPassword,
+    name: inputFullName,
+    profilePic: profilePic,
     specialty: inputSpecialty,
     gender: inputGender,
+    email: "example@me.com",
+    mobile: "111 111 1111",
     patients:[]
   };
   MongoClient.connect(url, function(err, db){
@@ -120,6 +135,7 @@ router.post('/login', function(req, res, next){
     var cursor = db.collection('doctors').find();
     cursor.forEach(function(doc, err){
       if (doc.username == loginusername && doc.password == loginpassword){
+        currUser = doc;
         exists = true;
         userID = (doc._id).toString();
         objectID = doc._id;
@@ -132,6 +148,7 @@ router.post('/login', function(req, res, next){
         req.session.user = loginusername;
         req.session.mongoID = objectID;
         console.log("successfull validation of " + objectID);
+        loggedUser = req.session.user;
         console.log("logged user: " + req.session.user);
         res.redirect('/');
       }else{
@@ -145,6 +162,38 @@ router.post('/login', function(req, res, next){
   });
 
 
+});
+
+// for AJAX resource
+router.get('/profpic', function(req, res, next) {
+  // mongo db get data
+  var profilePic = "";
+  
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+        profilePic = doc.profilePic;
+      }
+    }, function(){
+      db.close();
+      res.send(profilePic);
+
+      console.log("Pic: " + profilePic);
+    });
+  });
+
+});
+
+// for AJAX resource
+router.get('/mainInfo', function(req, res, next) {
+  
+  console.log("current user doc:");
+  console.log(currUser);
+  res.send(currUser);
 
 });
 

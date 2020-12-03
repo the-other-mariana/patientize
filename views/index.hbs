@@ -1,12 +1,62 @@
 {{# if success }}
   <section>
-    <div class="card text-white bg-success mb-3">
+    <script src="/javascripts/update-user.js"></script>
+    <div class="container">
 
-      <div class="card-header"><h4>Hello, {{ user }}</h4></div>
-      <div class="card-body">
+      <div class="row">
+        <div class="col">
 
+          <div class="container">
+
+            <div class="row">
+              <div class="col">
+
+                <div class="card bg-light" width="100%">
+                  <img id="profilePic" src="" alt="your image" height=100% width=100%>
+                  <div class="card-body">
+                    <h5 id="user" class="card-title">{{ user }}</h5>
+                    <p id="uname"></p>
+                    <p id="uspecialty"></p>
+                  </div>
+                  <div class="card-footer">
+                    <form action="/uploadphoto" method="post" enctype='multipart/form-data'> 
+                      <label for="profPic" class="btn btn-secondary btn-block btn-outlined">Choose Profile Pic</label>
+                      <input id = "profPic" type="file" name="myImage" style="display: none"/>
+                      <button type = "submit" class="btn btn-primary btn-block btn-outlined">Save Profile Pic</button>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+
+                <div class="card bg-light" width="100%">
+                  <div class="card-body">
+                    <h5 class="card-title">Contact</h5>
+                    <p id="uemail" class="card-text"></p>
+                    <p id="umobile" class="card-text"></p>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#contactModal">
+                      Edit Info
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-6">
+          2 of 3 (wider)
+        </div>
+        <div class="col">
+          3 of 3
+        </div>
       </div>
-
     </div>
   </section>
 {{else}}

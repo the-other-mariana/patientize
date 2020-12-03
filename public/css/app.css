@@ -12,3 +12,11 @@ body {
 .jumbotron {
   background-color: #f0f5fa!important;
 }
+
+.row{
+  padding-bottom: 10px;
+}
+
+.container{
+  padding: 0px;
+}
