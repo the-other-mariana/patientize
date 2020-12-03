@@ -1,9 +1,14 @@
 body {
   padding-top: 40px;
+  background-color:#bfd7f2;
 }
 
 .welcome {
   font-size: 18px;
   display: inline;
   padding: 5px;
+}
+
+.jumbotron {
+  background-color: #f0f5fa!important;
 }

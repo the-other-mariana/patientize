@@ -1,17 +1,30 @@
-<div class="row panel panel-default">
+<div class="card bg-light mb-3">
 
-    <div class="panel-heading">Register your account: </div>
-    <div class="panel-body">
+    <div class="card-header">Register your account: </div>
+    <div class="card-body">
         <form>
             <div class = "input">
-            <label for = "username" style = "display: block;"> Username: </label>
-            <input type = "text" id = "username" name = "username">
+                <label for = "username" style = "display: block;"> Username: </label>
+                <input type = "text" class="form-control" id = "username" name = "username">
             </div>
             <div class = "input">
-            <label for = "password" style = "display: block;"> Password: </label>
-            <input type = "text" id = "password" name = "password">
+                <label for = "password" style = "display: block;"> Password: </label>
+                <input type = "text" class="form-control" id = "password" name = "password">
             </div>
-            <button type = "submit" formaction="/register/submit-account" formmethod="post">Register</button>
+            <div class = "input">
+                <label for = "specialty" style = "display: block;"> Specialty: </label>
+                <input type = "text" class="form-control" id = "specialty" name = "specialty">
+            </div>
+            <div class = "input">
+                <label for = "gender" style = "display: block;"> Gender </label>
+                <select class="form-control" id = "gender" name = "gender">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
+            </div>
+            <br/>
+            <br/>
+            <button type = "submit" class="btn btn-primary" formaction="/register/submit-account" formmethod="post">Register</button>
         </form>
     </div>
 </div>

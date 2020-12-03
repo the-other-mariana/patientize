@@ -5,18 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
 
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="/css/app.css" rel="stylesheet">
 
   <!-- double handlebars means the output is plain text in handlebars -->
-  <div class="jumbotron text-center">
-    <h2>{{ title }}</h2>
+  <div class="jumbotron text-center text-white bg-dark mb-3">
+     <form action="/home" method="post">
+      <input type="image" src="/uploads/logo-patientize.png" alt="Submit" width="500">
+    </form>
   </div>
 
   <!-- <link rel = "stylesheet" type="text/css" href = "/css/style.css"> -->
   <link rel = "stylesheet" type="text/css" href = "/css/style.css">
+  <script src="/javascripts/jquery-3.3.1.min.js"></script>
 </head>
 <body>
   {{{ body }}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

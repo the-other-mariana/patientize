@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/arthubdb';
+const url = 'mongodb://localhost:27017/patientizedb';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Art Hub', success: req.session.success, errors: req.session.errors, user: req.session.user });
+  res.render('index', { title: 'Patientize', success: req.session.success, errors: req.session.errors, user: req.session.user });
   req.session.errors = null;
   req.session.success = null;
 
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     if(err != null){
       console.log("error at db connect");
     }
-    var cursor = db.collection('user-data').find();
+    var cursor = db.collection('doctors').find();
     cursor.forEach(function(doc, err){
       console.log(doc);
     }, function(){
@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 // for developer version: restart db button
 router.post('/restart-db', function(req, res, next){
   MongoClient.connect(url, function(err, db){
-    db.collection('user-data').drop(function(err, result){
+    db.collection('doctors').drop(function(err, result){
       if(err != null){
         console.log("error dropping");
       }
@@ -43,13 +43,13 @@ router.post('/restart-db', function(req, res, next){
 router.post('/register', function(req, res, next){
 
   MongoClient.connect(url, function(err, db){
-    db.collection('user-data').count().then(function(count){
+    db.collection('doctors').count().then(function(count){
       if(count == 0){
         console.log("no users");
       }else{
         console.log("has users");
       }
-      res.render('register', { title: 'Register Account', errors: req.session.errors });
+      res.render('register', { title: 'Patientize', errors: req.session.errors });
     });
   });
   req.session.errors = null;
@@ -61,6 +61,9 @@ router.post('/register/submit-account', function(req, res, next){
 
   var inputUsername = req.body.username;
   var inputPassword = req.body.password;
+  var inputSpecialty = req.body.specialty;
+  var inputGender = req.body.gender;
+
   var loggedUser = req.session.user;
   var userID = "";
   var objectID = null;
@@ -68,10 +71,13 @@ router.post('/register/submit-account', function(req, res, next){
   // mongodb user insertion
   var item = {
     username: inputUsername,
-    password: inputPassword
+    password: inputPassword,
+    specialty: inputSpecialty,
+    gender: inputGender,
+    patients:[]
   };
   MongoClient.connect(url, function(err, db){
-    db.collection('user-data').count().then((count) => {
+    db.collection('doctors').count().then((count) => {
       console.log("number of users from db: " + count);
 
       // if creating super user
@@ -84,7 +90,7 @@ router.post('/register/submit-account', function(req, res, next){
         console.log("has users")
       }
 
-      db.collection('user-data').insertOne(item, function(err, result){
+      db.collection('doctors').insertOne(item, function(err, result){
         userID = (result.insertedId).toString();
         objectID = result.insertedId;
 
@@ -111,7 +117,7 @@ router.post('/login', function(req, res, next){
     if(err != null){
       console.log("error at db connect");
     }
-    var cursor = db.collection('user-data').find();
+    var cursor = db.collection('doctors').find();
     cursor.forEach(function(doc, err){
       if (doc.username == loginusername && doc.password == loginpassword){
         exists = true;

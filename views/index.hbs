@@ -1,12 +1,10 @@
 {{# if success }}
   <section>
-    <div class="row panel panel-success">
+    <div class="card text-white bg-success mb-3">
 
-      <div class="panel-heading"><h4>Hello, {{ user }}</h4></div>
-      <div class="panel-body">
-        <form>
-          <button type = "submit" formaction="/additem" formmethod="post">Add Item</button>
-        </form>
+      <div class="card-header"><h4>Hello, {{ user }}</h4></div>
+      <div class="card-body">
+
       </div>
 
     </div>
@@ -21,22 +19,24 @@
       </ul>
     </section>
   {{/if}}
-  <div class="row panel panel-default">
+  <div class="card bg-light mb-3">
 
-      <div class="panel-heading">Log in with your account: </div>
-      <div class="panel-body">
+      <div class="card-header">Log in with your account: </div>
+      <div class="card-body">
         <form>
           <div class = "input">
-            <label for = "loginusername" style = "display: block;"> Username: </label>
-            <input type = "text" id = "loginusername" name = "loginusername">
+            <label for = "loginusername" style = "display: block;"> Username </label>
+            <input type = "text" class="form-control" id = "loginusername" name = "loginusername">
           </div>
           <div class = "input">
-            <label for = "loginpassword" style = "display: block;"> Password: </label>
-            <input type = "password" id = "loginpassword" name = "loginpassword">
+            <label for = "loginpassword" style = "display: block;"> Password </label>
+            <input type = "password" class="form-control" id = "loginpassword" name = "loginpassword">
           </div>
-          <button type = "submit" formaction="/login" formmethod="post">Log In</button>
-          <button type = "submit" formaction="/register" formmethod="post">Register</button>
-          <button type = "submit" formaction="/restart-db" formmethod="post">Restart DB</button>
+          <br/>
+          <br/>
+          <button type = "submit" class="btn btn-primary" formaction="/login" formmethod="post">Log In</button>
+          <button type = "submit" class="btn btn-primary" formaction="/register" formmethod="post">Register</button>
+          <button type = "submit" class="btn btn-primary" formaction="/restart-db" formmethod="post">Restart DB</button>
         </form>
       </div>
   </div>
