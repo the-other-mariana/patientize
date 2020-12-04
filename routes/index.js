@@ -312,4 +312,26 @@ router.post('/addPatient', function(req, res, next){
   req.session.errors = null;
 });
 
+// for AJAX resource
+router.get('/patientsInfo', function(req, res, next) {
+  // mongo db get data
+  var cpatients = [];
+
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      cpatients = doc.patients;
+
+    }, function(){
+      db.close();
+      res.send(cpatients);
+      
+    });
+  });
+
+});
+
 module.exports = router;
