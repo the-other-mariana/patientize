@@ -246,4 +246,56 @@ router.post('/patients', function(req, res, next){
 
 });
 
+router.post('/addPatient', function(req, res, next){
+  console.log("new patient...");
+
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+        newPatient = {
+          lastname: req.body.plname, 
+          name: req.body.pname,
+          email: req.body.pemail,
+          mobile: req.body.pmobile,
+          gender: req.body.pgender,
+          birthdate: req.body.pbirth,
+          age: 23,
+          records: [],
+          documents: []
+        };
+
+        var cpatients = doc.patients;
+        cpatients.push(newPatient);
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          patients: cpatients,
+        };
+        currUser = newvalues;
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
+  res.render('patients', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser });
+  req.session.errors = null;
+});
+
 module.exports = router;

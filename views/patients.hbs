@@ -31,20 +31,19 @@
 
 <!-- PATIENT TEMPLATE -->
 <div id="patientTemplate" style="display: none;">
-    <div class="card text-white bg-dark mb-3">
-        <div class="card-horizontal">
-            <div class="img-square-wrapper">
-                <img class="user-img" src="http://via.placeholder.com/300x180" alt="Profile Pic" style="max-width: 250px;">
-            </div>
-            <div class="card-body">
-                <form action="/seeUser" method="post">
-                    <h4 class="card-title" id="founduser" name="founduser">Card title</h4>
-                    <p class="info1">email@example.com</p>
-                    <p class="info2">000 000 0000</p>
-                
-                    <button type="submit" class="btn btn-primary">See User</button>
-                </form>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            Patient #
+        </div>
+        <div class="card-body">
+            <h5 class="patient-name">Last Name, Name</h5>
+            <p class="patient-gender">Gender</p>
+            <p class="patient-mobile">Mobile</p>
+            <p class="patient-email">Email</p>
+            <p class="patient-age">Age</p>
+            <form action="/patientDetails" method="post">
+                <button type="submit" class="btn btn-primary">Details</button>
+            </form>
         </div>
     </div>
 </div>
@@ -79,8 +78,8 @@
                 </div>
 
                 <div class = "input">
-                    <label for = "gender" style = "display: block;"> Gender </label>
-                    <select class="form-control" id = "gender" name = "gender">
+                    <label for = "pgender" style = "display: block;"> Gender </label>
+                    <select class="form-control" id = "pgender" name = "pgender">
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                     </select>
