@@ -253,6 +253,20 @@ router.post('/addPatient', function(req, res, next){
     if(err != null){
       console.log("error at db connect");
     }
+
+    var dob = new Date(req.body.pbirth);  
+    //calculate month difference from current date in time  
+    var month_diff = Date.now() - dob.getTime();  
+      
+    //convert the calculated difference in date format  
+    var age_dt = new Date(month_diff);   
+      
+    //extract year from date      
+    var year = age_dt.getUTCFullYear();  
+      
+    //now calculate the age of the user  
+    var cage = Math.abs(year - 1970);  
+
     var cursor = db.collection('doctors').find();
     cursor.forEach(function(doc, err){
       if (doc.username == loggedUser){
@@ -263,7 +277,7 @@ router.post('/addPatient', function(req, res, next){
           mobile: req.body.pmobile,
           gender: req.body.pgender,
           birthdate: req.body.pbirth,
-          age: 23,
+          age: cage,
           records: [],
           documents: []
         };
