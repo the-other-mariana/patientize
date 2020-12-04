@@ -1,72 +1,111 @@
 {{# if success }}
   <section>
     <script src="/javascripts/update-user.js"></script>
-    <div class="container">
-
-      <div class="row">
-        <div class="col">
-
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <form action="/Patients">
+              <button type="submit" class="btn btn-light">Patients</button>
+            </form>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="">Help</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <!-- -->
           <div class="container">
 
             <div class="row">
               <div class="col">
 
-                <div class="card bg-light" width="100%">
-                  <img id="profilePic" src="" alt="your image" height=100% width=100%>
-                  <div class="card-body">
-                    <h5 id="user" class="card-title">{{ user }}</h5>
-                    <p id="uname"></p>
-                    <p id="uspecialty"></p>
+                <div class="container">
+
+                  <div class="row">
+                    <div class="col">
+
+                      <div class="card bg-light" width="100%">
+                        <img id="profilePic" src="" alt="your image" height=100% width=100%>
+                        <div class="card-body">
+                          <h5 id="user" class="card-title">{{ user }}</h5>
+                          <p id="uname"></p>
+                          <p id="uspecialty"></p>
+                        </div>
+                        <div class="card-footer">
+                          <form action="/uploadphoto" method="post" enctype='multipart/form-data'> 
+                            <label for="profPic" class="btn btn-secondary btn-block btn-outlined">Choose Profile Pic</label>
+                            <input id = "profPic" type="file" name="myImage" style="display: none"/>
+                            <button type = "submit" class="btn btn-primary btn-block btn-outlined">Save Profile Pic</button>
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                  <div class="card-footer">
-                    <form action="/uploadphoto" method="post" enctype='multipart/form-data'> 
-                      <label for="profPic" class="btn btn-secondary btn-block btn-outlined">Choose Profile Pic</label>
-                      <input id = "profPic" type="file" name="myImage" style="display: none"/>
-                      <button type = "submit" class="btn btn-primary btn-block btn-outlined">Save Profile Pic</button>
-                    </form>
+
+                  <div class="row">
+                    <div class="col">
+
+                      <div class="card bg-light" width="100%">
+                        <div class="card-body">
+                          <h5 class="card-title">Contact</h5>
+                          <p id="uemail" class="card-text"></p>
+                          <p id="umobile" class="card-text"></p>
+                          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#contactModal">
+                            Edit Info
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
+
                 </div>
 
               </div>
-            </div>
+              <div class="col-6">
+                <div class="card text-left">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Your Information, {{ user }}</h5>
+                  
+                    <label for = "iusername" style = "display: block;"> Username: </label>
+                    <input type = "text" class="form-control" id = "iusername" name = "iusername" disabled>
 
-            <div class="row">
+                    <label for = "iname" style = "display: block;"> Name: </label>
+                    <input type = "text" class="form-control" id = "iname" name = "iname" disabled>
+
+                    <label for = "ispecialty" style = "display: block;"> Specialty: </label>
+                    <input type = "text" class="form-control" id = "ispecialty" name = "ispecialty" disabled>
+
+                    <label for = "igender" style = "display: block;"> Gender: </label>
+                    <input type = "text" class="form-control" id = "igender" name = "igender" disabled>
+
+                    <label for = "iemail" style = "display: block;"> Email: </label>
+                    <input type = "text" class="form-control" id = "iemail" name = "iemail" disabled>
+
+                    <label for = "imobile" style = "display: block;"> Mobile: </label>
+                    <input type = "text" class="form-control" id = "imobile" name = "imobile" disabled>
+
+                    <label for = "ipatients" style = "display: block;"> Patients: </label>
+                    <input type = "text" class="form-control" id = "ipatients" name = "ipatients" disabled>
+
+                  </div>
+                </div>
+              </div>
               <div class="col">
-
-                <div class="card bg-light" width="100%">
-                  <div class="card-body">
-                    <h5 class="card-title">Contact</h5>
-                    <p id="uemail" class="card-text"></p>
-                    <p id="umobile" class="card-text"></p>
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#contactModal">
-                      Edit Info
-                    </button>
-                  </div>
-                </div>
-
+                Ads Go Here
               </div>
             </div>
-
           </div>
-
-        </div>
-        <div class="col-6">
-          <div class="card">
-            <div class="card-header">
-              Your Information
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          3 of 3
-        </div>
+        <!-- -->
       </div>
     </div>
+    
   </section>
   <!-- Modal CONTACT -->
     <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

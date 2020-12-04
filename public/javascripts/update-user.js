@@ -35,7 +35,15 @@ $(document).ready(function() {
           $("#upspecialty").prop("defaultValue", data.specialty);
           $("#upemail").prop("defaultValue", data.email);
           $("#upmobile").prop("defaultValue", data.mobile);
-          
+
+          // Info Card
+          $("#iusername").val(data.username);
+          $("#iname").val(data.name);
+          $("#ispecialty").val(data.specialty);
+          $("#igender").val(data.gender);
+          $("#iemail").val(data.email);
+          $("#imobile").val(data.mobile);
+          $("#ipatients").val(data.patients.length);
         }
       });
     }

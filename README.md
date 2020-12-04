@@ -28,3 +28,7 @@ You can register as follows: <br />
 When you enter and edit your information it looks like this: <br />
 
 ![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-info.png?raw=true) <br />
+
+Now, the profile view of a doctor user would look like below. <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/profile-view.png?raw=true) <br />
