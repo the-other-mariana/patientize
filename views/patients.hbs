@@ -1,0 +1,107 @@
+<section>
+<script src="/javascripts/update-patients.js"></script>
+
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+            <form action="/patients" method="post">
+                <button type="submit" class="btn btn-light">Profile</button>
+            </form>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Patients</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link disabled" href="">Help</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#patientModal">
+        Add Patient
+        </button>
+        <!-- PATIENTS GO HERE -->
+        <div id="patientSection">
+
+        </div>
+    </div>
+</div>
+
+
+<!-- PATIENT TEMPLATE -->
+<div id="patientTemplate" style="display: none;">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-horizontal">
+            <div class="img-square-wrapper">
+                <img class="user-img" src="http://via.placeholder.com/300x180" alt="Profile Pic" style="max-width: 250px;">
+            </div>
+            <div class="card-body">
+                <form action="/seeUser" method="post">
+                    <h4 class="card-title" id="founduser" name="founduser">Card title</h4>
+                    <p class="info1">email@example.com</p>
+                    <p class="info2">000 000 0000</p>
+                
+                    <button type="submit" class="btn btn-primary">See User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal CONTACT -->
+    <div class="modal fade" id="patientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">New Patient</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/addPatient" method="post">
+            <div class="modal-body">
+                <div class = "input">
+                    <label for = "plname" style = "display: block;"> Last Names: </label>
+                    <input type = "text" class="form-control" id = "plname" name = "plname">
+                </div>
+                <div class = "input">
+                    <label for = "pname" style = "display: block;"> Name: </label>
+                    <input type = "text" class="form-control" id = "pname" name = "pname">
+                </div>
+                <div class = "input">
+                    <label for = "pemail" style = "display: block;"> Email: </label>
+                    <input type = "text" class="form-control" id = "pemail" name = "pemail">
+                </div>
+                <div class = "input">
+                    <label for = "pmobile" style = "display: block;"> Mobile: </label>
+                    <input type = "text" class="form-control" id = "pmobile" name = "pmobile">
+                </div>
+
+                <div class = "input">
+                    <label for = "gender" style = "display: block;"> Gender </label>
+                    <select class="form-control" id = "gender" name = "gender">
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select>
+                </div>
+
+                <div class="input">
+                    <label for="pbirth" style = "display: block;">Birth Date:</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" value="2011-08-19" id="pbirth" name="pbirth">
+                    </div>
+                </div>
+                <br/>
+                <br/>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+</section>

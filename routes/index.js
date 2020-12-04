@@ -239,4 +239,11 @@ router.post('/updateInfo', function(req, res, next){
   res.render('index', {title: 'Patientize', success: successLog, user: loggedUser});
 });
 
+router.post('/patients', function(req, res, next){
+
+  res.render('patients', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser });
+  req.session.errors = null;
+
+});
+
 module.exports = router;

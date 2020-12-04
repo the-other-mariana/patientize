@@ -32,3 +32,11 @@ When you enter and edit your information it looks like this: <br />
 Now, the profile view of a doctor user would look like below. <br />
 
 ![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/profile-view.png?raw=true) <br />
+
+If you click on the `Patients` tab, you see the following: <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/patients-view.png?raw=true) <br />
+
+By clicking on `Add Patient` button, you see the form below. <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/add-patient.png?raw=true) <br />
