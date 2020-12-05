@@ -18,7 +18,46 @@
         </div>
     </div>
 
-    <label class="btn btn-secondary">
-        Records
-    </label>
+    <div style="display: inline;">
+        <label class="btn btn-secondary" style="margin-bottom: 20px;">
+            Clinical Records
+        </label>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recordModal" style="margin-bottom: 20px;">
+        Add Record
+        </button>
+    </div>
+    <div class="card" id="patientRecords" style="margin-bottom: 20px; ">
+        <!-- RECORDS WHO HERE -->
+        <div id="recordSection">
+
+        </div>
+    </div>
+
+    <div style="display: inline;">
+        <label class="btn btn-secondary" style="margin-bottom: 20px;">
+            Medical Documents
+        </label>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#certificateModal" style="margin-bottom: 20px;">
+        Certificate
+        </button>
+    </div>
+    <div class="card" id="patientDocs" style="margin-bottom: 20px; ">
+        <!-- RECORDS WHO HERE -->
+        <div id="docSection">
+
+        </div>
+    </div>
+
+    <!-- TEMPLATES -->
+    <div id="noRecordsLabel" style="display: none;">
+        <label class="btn btn-light text-primary" style="margin: 0px; background-color: #f0f5fa;">
+            No Clinical Records Yet
+        </label>
+    </div>
+    <div id="noDocsLabel" style="display: none;">
+        <label class="btn btn-light text-primary" style="margin: 0px; background-color: #f0f5fa;">
+            No Documents Yet
+        </label>
+    </div>
+
 </section>

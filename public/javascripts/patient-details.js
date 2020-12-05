@@ -20,6 +20,21 @@ $(document).ready(function() {
             patDetails.find('.patient-birth').text("Birth Date: " + data.birthdate);
             patDetails.find('.patient-age').text("Age: " + data.age + " years old");
 
+            $('#recordSection').empty();
+            var patRecords = $('#recordSection');
+            patRecords.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
+            if (data.records.length == 0){
+                var noRecTemplate = $('#noRecordsLabel');
+                patRecords.append(noRecTemplate.html());
+            }
+
+            $('#docSection').empty();
+            var patDocs = $('#docSection');
+            patDocs.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
+            if (data.documents.length == 0){
+                var noDocTemplate = $('#noDocsLabel');
+                patDocs.append(noDocTemplate.html());
+            }
         }
         });
     }

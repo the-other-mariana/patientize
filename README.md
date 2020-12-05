@@ -55,4 +55,4 @@ After filling a New Patient form and clicking on `Save`, the patient appears as 
 
 If you click on `Details` button of a patient, you get to see the page with all her/his info. <br />
 
-![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/patient-details.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/patient-details-02.png?raw=true) <br />
