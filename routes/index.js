@@ -6,6 +6,7 @@ const url = 'mongodb://localhost:27017/patientizedb';
 var currUser = null;
 var loggedUser = "";
 var successLog = false;
+var patientIndex = 33;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -332,6 +333,14 @@ router.get('/patientsInfo', function(req, res, next) {
     });
   });
 
+});
+
+router.get('/patient/:id', function(req, res, next){
+
+  patientIndex = parseInt(req.params.id);
+  var name = currUser.patients[patientIndex].name;
+  console.log("backend patient index: " + req.params.id);
+  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
 });
 
 module.exports = router;

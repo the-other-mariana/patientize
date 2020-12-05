@@ -1,5 +1,22 @@
 <section>
 <script src="/javascripts/update-patients.js"></script>
+<script>
+    function identifyPatient(elem){
+        console.log("IDDDDD");
+        children = ((elem.parentNode)).childNodes;
+        myID = "#pat" + ((elem.parentNode)).childNodes[5].textContent;
+        index = ((elem.parentNode)).childNodes[5].textContent;
+        console.log(children);
+
+        for(var i = 0; i < children.length; i++){
+            t = children[i].textContent;
+            console.log("i: " + i + " text: " + t);
+        }
+
+        $(myID).text(index);
+        $(myID).val(parseInt(index));
+    }
+</script>
 
 <div class="card text-center">
     <div class="card-header">
@@ -38,18 +55,19 @@
             Patient #
         </div>
         <div class="card-body">
-            <form action="/patientDetails" method="post"></form>
-                
+            <form action='/patientDetails' method="get" class="test">
+
                 <h3 class="text-primary" style="color:blue;">Last Name, Name</h3>
+
                 <p class="patient-gender">Gender</p>
                 <p class="patient-mobile">Mobile</p>
                 <p class="patient-email">Email</p>
                 <p class="patient-age">Age</p>
 
-                <button type="submit" class="btn btn-primary" style="float: left;">Details</button>
+                <button type="submit" class="btn btn-primary">Details</button>
                 <button type="button" class="btn btn-danger" style="float: right;">Delete</button>
-
             </form>
+            
         </div>
     </div>
 </div>
@@ -67,7 +85,7 @@
           <form action="/addPatient" method="post">
             <div class="modal-body">
                 <div class = "input">
-                    <label for = "plname" style = "display: block;"> Last Names: </label>
+                    <label for = "plname" style = "display: block;"> Last Name(s): </label>
                     <input type = "text" class="form-control" id = "plname" name = "plname">
                 </div>
                 <div class = "input">

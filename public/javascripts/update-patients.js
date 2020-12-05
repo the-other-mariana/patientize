@@ -21,6 +21,7 @@ $(document).ready(function() {
 
                 patTemplate.find('.card-header').text("Patient #" + (i + 1));
                 patTemplate.find('.text-primary').text(data[i].lastname + ", " + data[i].name);
+                patTemplate.find('.test').attr('action', '/patient/' + i);
                 patTemplate.find('.patient-gender').text("Gender: " + data[i].gender);
                 patTemplate.find('.patient-mobile').text("Mobile: " + data[i].mobile);
                 patTemplate.find('.patient-email').text("Email: " + data[i].email);
