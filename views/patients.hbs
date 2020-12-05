@@ -1,28 +1,11 @@
 <section>
 <script src="/javascripts/update-patients.js"></script>
-<script>
-    function identifyPatient(elem){
-        console.log("IDDDDD");
-        children = ((elem.parentNode)).childNodes;
-        myID = "#pat" + ((elem.parentNode)).childNodes[5].textContent;
-        index = ((elem.parentNode)).childNodes[5].textContent;
-        console.log(children);
-
-        for(var i = 0; i < children.length; i++){
-            t = children[i].textContent;
-            console.log("i: " + i + " text: " + t);
-        }
-
-        $(myID).text(index);
-        $(myID).val(parseInt(index));
-    }
-</script>
 
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-            <form action="/patients" method="post">
+            <form action="/home" method="post">
                 <button type="submit" class="btn btn-light">Profile</button>
             </form>
             </li>
