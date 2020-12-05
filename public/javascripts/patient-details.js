@@ -22,16 +22,16 @@ $(document).ready(function() {
 
             $('#recordSection').empty();
             var patRecords = $('#recordSection');
-            patRecords.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
             if (data.records.length == 0){
+                patRecords.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
                 var noRecTemplate = $('#noRecordsLabel');
                 patRecords.append(noRecTemplate.html());
             }
 
             $('#docSection').empty();
             var patDocs = $('#docSection');
-            patDocs.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
             if (data.documents.length == 0){
+                patDocs.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
                 var noDocTemplate = $('#noDocsLabel');
                 patDocs.append(noDocTemplate.html());
             }
