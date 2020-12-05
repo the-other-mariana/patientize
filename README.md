@@ -43,4 +43,4 @@ By clicking on `Add Patient` button, you see the form below. <br />
 
 After filling a New Patient form and clicking on `Save`, the patient appears as below. <br />
 
-![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/added-patient.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/added-patient-02.png?raw=true) <br />
