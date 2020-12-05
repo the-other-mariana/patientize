@@ -1,8 +1,24 @@
 <section>
     <script src="/javascripts/patient-details.js"></script>
-    <div class="card">
-    <div class="card-body">
-        This is patient {{patientName}}
+    <label class="btn btn-secondary" style="margin-bottom: 20px;">
+        Details: {{ patientName }}
+    </label>
+    <div class="card" id="patientDetails" style="margin-bottom: 20px;">
+        <div class="card-body">
+
+            <h3 class="text-primary">Last Name, Name</h3>
+            
+
+            <p class="patient-gender">Gender</p>
+            <p class="patient-mobile">Mobile</p>
+            <p class="patient-email">Email</p>
+            <p class="patient-birth">Birth Date</p>
+            <p class="patient-age">Age</p>
+
+        </div>
     </div>
-    </div>
+
+    <label class="btn btn-secondary">
+        Records
+    </label>
 </section>

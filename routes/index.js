@@ -335,12 +335,26 @@ router.get('/patientsInfo', function(req, res, next) {
 
 });
 
+// for AJAX resource
+router.get('/patient/patientDetails', function(req, res, next) {
+  
+  res.send(currUser.patients[patientIndex]);
+
+});
+
 router.get('/patient/:id', function(req, res, next){
 
   patientIndex = parseInt(req.params.id);
   var name = currUser.patients[patientIndex].name;
   console.log("backend patient index: " + req.params.id);
   res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+});
+
+router.post('/home', function(req, res, next){
+
+  res.render('index', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser});
+  req.session.errors = null;
+
 });
 
 module.exports = router;

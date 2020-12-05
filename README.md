@@ -4,7 +4,15 @@ Patientize is a prototype of web app that allows doctors to log in and maintain 
 
 ## Specifications
 
-Node.js
+- Express
+- Handlebars
+- Bootstrap 4
+
+## Development
+
+1. Install `Node.js v10.15.3`.<br />
+2. Download and install MongoDB Service from [here](https://www.mongodb.com/es).<br />
+3. Download this whole repository.<br />
 
 ## Usage
 
@@ -44,3 +52,7 @@ By clicking on `Add Patient` button, you see the form below. <br />
 After filling a New Patient form and clicking on `Save`, the patient appears as below. <br />
 
 ![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/added-patient-02.png?raw=true) <br />
+
+If you click on `Details` button of a patient, you get to see the page with all her/his info. <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/patient-details.png?raw=true) <br />
