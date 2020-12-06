@@ -36,15 +36,17 @@ The app starts with a simple login. <br />
 
 You can register as follows: <br />
 
-![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/register.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/register-02.png?raw=true) <br />
 
 When you enter and edit your information it looks like this: <br />
 
-![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-info.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-info-02.png?raw=true) <br />
 
 Now, the profile view of a doctor user would look like below. <br />
 
-![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/profile-view-02.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/profile-view-03.png?raw=true) <br />
+
+*Note: the DGP Number in Mexico is the Number Key that a doctor is given to confirm he is a doctor.* <br />
 
 If you click on the `Patients` tab, you see the following: <br />
 
@@ -69,3 +71,11 @@ Whenever a doctor is in a patient's detail view, he/she can add a Clinical Recor
 Then, the new record is added and looks as follows. <br />
 
 ![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/add-record.png?raw=true) <br />
+
+Whenever a doctor wants to add a Document to a patient, she/he clicks on the button she/he wishes, say Prescription, and the following form appears. <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/new-doc-form.png?raw=true) <br />
+
+And then, if `Save` button is clicked, the document (in this case a prescription) appears in a patient's doc section. <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/add-prescription.png?raw=true) <br />
