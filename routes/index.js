@@ -451,6 +451,7 @@ router.post('/patient/addPrescription', function(req, res, next){
     cursor.forEach(function(doc, err){
       if (doc.username == loggedUser){
 
+        // type will change with every document type
         newDoc = {
           type: "prescription",
           appointment: req.body.pappointment,

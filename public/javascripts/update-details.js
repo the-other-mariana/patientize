@@ -54,8 +54,6 @@ $(document).ready(function() {
                         docTemplate.find('.p-diagnosis').text("Diagnosis: " + data.documents[i].diagnosis);
                     }
                     
-                    
-
                     patDocs.append(docTemplate.html());
                 }
             }
