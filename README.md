@@ -26,7 +26,7 @@ Patientize is a prototype of web app that allows doctors to log in and maintain 
 5. Type on Powershell: `npm start`. <br />
 6. Open a web browser and type: `localhost:8000`. <br />
 
-*Note: The repo includes all the node_modules folder, so there is not need to run `npm install`*
+*Note: The repo includes all the node_modules folder, so there is no need to run `npm install`*
 
 ## Output
 
