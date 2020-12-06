@@ -52,4 +52,9 @@ $(document).ready(function() {
 
     loadDetails();
 
+    setInterval(function(){
+      // this will run after every 1 second
+      loadDetails();
+    }, 3000);
+
 });

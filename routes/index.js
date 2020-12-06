@@ -361,7 +361,7 @@ router.post('/home', function(req, res, next){
 
 });
 
-router.post('/addRecord', function(req, res, next){
+router.post('/patient/addRecord', function(req, res, next){
   console.log("new record...");
 
   MongoClient.connect(url, function(err, db){
