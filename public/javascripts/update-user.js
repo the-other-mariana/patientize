@@ -27,12 +27,14 @@ $(document).ready(function() {
           // main info 
           $("#uname").text(data.name);
           $("#uspecialty").text(data.specialty);
+          $("#udgp").text("DGP: " + data.dgp);
           $("#uemail").text(data.email);
           $("#umobile").text(data.mobile);
 
           // edit data form with default user info
           $("#upname").prop("defaultValue", data.name);
           $("#upspecialty").prop("defaultValue", data.specialty);
+          $("#updgp").prop("defaultValue", data.dgp);
           $("#upemail").prop("defaultValue", data.email);
           $("#upmobile").prop("defaultValue", data.mobile);
 
@@ -40,6 +42,7 @@ $(document).ready(function() {
           $("#iusername").val(data.username);
           $("#iname").val(data.name);
           $("#ispecialty").val(data.specialty);
+          $("#idgp").val(data.dgp);
           $("#igender").val(data.gender);
           $("#iemail").val(data.email);
           $("#imobile").val(data.mobile);

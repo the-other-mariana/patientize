@@ -69,6 +69,7 @@ router.post('/register/submit-account', function(req, res, next){
   var inputSpecialty = req.body.specialty;
   var inputGender = req.body.gender;
   var inputFullName = req.body.fullname;
+  var inputDGP = req.body.dgp;
 
   var profilePic = "";
 
@@ -88,6 +89,7 @@ router.post('/register/submit-account', function(req, res, next){
     name: inputFullName,
     profilePic: profilePic,
     specialty: inputSpecialty,
+    dgp: inputDGP,
     gender: inputGender,
     email: "example@me.com",
     mobile: "111 111 1111",
@@ -219,6 +221,7 @@ router.post('/updateInfo', function(req, res, next){
           name: req.body.upname,
           profilePic: doc.profilePic, 
           specialty: req.body.upspecialty,
+          dgp: req.body.updgp,
           gender: doc.gender,
           email: req.body.upemail, 
           mobile: req.body.upmobile,
@@ -293,6 +296,7 @@ router.post('/addPatient', function(req, res, next){
           name: doc.name, 
           profilePic: doc.profilePic,
           specialty: doc.specialty,
+          dgp: doc.dgp,
           gender: doc.gender,
           email: doc.email,
           mobile: doc.mobile,
@@ -402,6 +406,7 @@ router.post('/addRecord', function(req, res, next){
           name: doc.name, 
           profilePic: doc.profilePic,
           specialty: doc.specialty,
+          dgp: doc.dgp,
           gender: doc.gender,
           email: doc.email,
           mobile: doc.mobile,
@@ -421,7 +426,9 @@ router.post('/addRecord', function(req, res, next){
     });
     
   });
-  res.render('patients', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser });
+
+  var name = currUser.patients[patientIndex].name;
+  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
   req.session.errors = null;
 });
 
