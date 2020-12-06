@@ -26,6 +26,15 @@ $(document).ready(function() {
                 patRecords.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
                 var noRecTemplate = $('#noRecordsLabel');
                 patRecords.append(noRecTemplate.html());
+            }else{
+                for(var i = 0; i < data.records.length; i++){
+                    var recTemplate = $('#recordTemplate');
+                    recTemplate.find('.text-primary').text("CR-" + (i + 1) + ": ");
+                    var times = (data.records[i].appointment).split('T');
+                    recTemplate.find('.cr-timestamp').text(times[0] + " at " + times[1]);
+
+                    patRecords.append(recTemplate.html());
+                }
             }
 
             $('#docSection').empty();
@@ -35,6 +44,8 @@ $(document).ready(function() {
                 var noDocTemplate = $('#noDocsLabel');
                 patDocs.append(noDocTemplate.html());
             }
+
+
         }
         });
     }

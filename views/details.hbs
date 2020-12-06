@@ -51,7 +51,7 @@
         </button>
     </div>
     <div class="card" id="patientDocs" style="margin-bottom: 20px; ">
-        <!-- RECORDS WHO HERE -->
+        <!-- DOCS WHO HERE -->
         <div id="docSection">
 
         </div>
@@ -113,6 +113,26 @@
           </form>
         </div>
       </div>
+    </div>
+
+    <!-- RECORD TEMPLATE -->
+    <div id="recordTemplate" style="display: none;">
+        <div class="card text-left" style="margin: 10px;">
+            <div class="card-body">
+                <form action='' method="get" class="cr-form">
+                    <div style="display: inline;">
+                        <h5 class="text-primary" style="color:blue; display: inline;">CR-Index: </h5>
+                        <h5 class="cr-timestamp" style="display: inline">Date and Time</h5>
+                    </div>
+
+                    <div style="float: right; display: inline;">
+                        <button type="button" class="btn btn-primary" style="margin-right: 5px;">Edit</button>
+                        <button type="button" class="btn btn-danger" >Delete</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
     </div>
 
 </section>

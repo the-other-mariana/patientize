@@ -4,11 +4,14 @@ Patientize is a prototype of web app that allows doctors to log in and maintain 
 
 ## Specifications
 
-- Express
-- Handlebars
-- Bootstrap 4
+- Backend
+	- Express
+	- MongoDB
+- Frontend
+	- Handlebars
+	- Bootstrap 4
 
-## Development
+## Get Started
 
 1. Install `Node.js v10.15.3`.<br />
 2. Download and install MongoDB Service from [here](https://www.mongodb.com/es).<br />
@@ -22,6 +25,8 @@ Patientize is a prototype of web app that allows doctors to log in and maintain 
 4. Go to your folder's directory where this repo was stored. <br />
 5. Type on Powershell: `npm start`. <br />
 6. Open a web browser and type: `localhost:8000`. <br />
+
+*Note: The repo includes all the node_modules folder, so there is not need to run `npm install`*
 
 ## Output
 
@@ -39,7 +44,7 @@ When you enter and edit your information it looks like this: <br />
 
 Now, the profile view of a doctor user would look like below. <br />
 
-![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/profile-view.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/profile-view-02.png?raw=true) <br />
 
 If you click on the `Patients` tab, you see the following: <br />
 
@@ -56,3 +61,11 @@ After filling a New Patient form and clicking on `Save`, the patient appears as 
 If you click on `Details` button of a patient, you get to see the page with all her/his info. <br />
 
 ![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/patient-details-02.png?raw=true) <br />
+
+Whenever a doctor is in a patient's detail view, he/she can add a Clinical Record to the patient, which triggers the form below. <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/new-record-form.png?raw=true) <br />
+
+Then, the new record is added and looks as follows. <br />
+
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/add-record.png?raw=true) <br />
