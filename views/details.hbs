@@ -1,5 +1,18 @@
 <section>
     <script src="/javascripts/update-details.js"></script>
+    <script>
+        var now = new Date();
+        var month = (now.getMonth() + 1);               
+        var day = now.getDate();
+        if (month < 10) 
+            month = "0" + month;
+        if (day < 10) 
+            day = "0" + day;
+        var today = now.getFullYear() + '-' + month + '-' + day + "T13:45:00";
+        $('#rappointment').val(today);
+        $('#pappointment').val(today);
+    </script>
+
     <label class="btn btn-secondary" style="margin-bottom: 20px;">
         Details: {{ patientName }}
     </label>
@@ -86,7 +99,7 @@
                     <div class="form-group row">
                         <label for="rappointment" class="col-sm-4 col-form-label col-form-label-lg">Appointment: </label>
                         <div class="col-sm-8">
-                            <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="rappointment" name="rappointment">
+                            <input class="form-control" type="datetime-local" value="" id="rappointment" name="rappointment">
                         </div>
                     </div>
 
@@ -174,7 +187,7 @@
                     <div class="form-group row">
                         <label for="pappointment" class="col-sm-4 col-form-label col-form-label-lg">Appointment: </label>
                         <div class="col-sm-8">
-                            <input class="form-control" type="datetime-local" value="2020-12-05T13:45:00" id="pappointment" name="pappointment">
+                            <input class="form-control" type="datetime-local" value="" id="pappointment" name="pappointment">
                         </div>
                     </div>
 

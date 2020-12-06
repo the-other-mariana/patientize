@@ -44,7 +44,7 @@ $(document).ready(function() {
                 var noDocTemplate = $('#noDocsLabel');
                 patDocs.append(noDocTemplate.html());
             }else{
-                for(var i = 0; i < data.records.length; i++){
+                for(var i = 0; i < data.documents.length; i++){
                     var docTemplate;
                     if(data.documents[i].type == "prescription"){
                         docTemplate = $('#prescriptionTemplate');
