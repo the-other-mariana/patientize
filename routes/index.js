@@ -357,4 +357,72 @@ router.post('/home', function(req, res, next){
 
 });
 
+router.post('/addRecord', function(req, res, next){
+  console.log("new record...");
+
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        newRecord = {
+          appointment: req.body.rappointment,
+          motive: req.body.rmotive,
+          results: req.body.rresults,
+          diagnosis: req.body.rdiagnosis,
+          treatment: req.body.rtreatment
+        };
+
+        var crecords = doc.patients[patientIndex].records;
+        crecords.push(newRecord);
+
+        newPatient = {
+          lastname: doc.patients[patientIndex].lastname, 
+          name: doc.patients[patientIndex].name,
+          email: doc.patients[patientIndex].email,
+          mobile: doc.patients[patientIndex].mobile,
+          gender: doc.patients[patientIndex].gender,
+          birthdate: doc.patients[patientIndex].birthdate,
+          age: doc.patients[patientIndex].age,
+          records: crecords,
+          documents: doc.patients[patientIndex].documents
+        };
+
+        var cpatients = doc.patients;
+        cpatients[patientIndex] = newPatient;
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          patients: cpatients,
+        };
+
+        currUser = newvalues;
+        console.log(newPatient);
+        
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
+  res.render('patients', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser });
+  req.session.errors = null;
+});
+
 module.exports = router;

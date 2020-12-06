@@ -24,3 +24,17 @@ body {
 p {
   margin-bottom: 5px;
 }
+
+.modal-header {
+  background-color: #bfd7f2;
+}
+
+.modal-footer {
+  background-color: #bfd7f2;
+}
+
+.modal-body
+{
+    background-color: #f0f5fa;
+}
+
