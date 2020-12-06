@@ -134,6 +134,29 @@
             </div>
         </div>
     </div>
+    <!-- PRESCRIPTION TEMPLATE -->
+    <div id="prescriptionTemplate" style="display: none;">
+        <div class="card text-left" style="margin: 10px;">
+            <div class="card-body">
+                <form action='' method="get" class="cr-form">
+                    <div style="display: inline;">
+                        <h5 class="text-primary" style="color:blue; display: inline;">PRESC-Index: </h5>
+                        <h5 class="p-timestamp" style="display: inline">Date and Time</h5>
+                    </div>
+                    <div style="display: block;">
+                    <h5 class="p-diagnosis">Diagnosis</h5>
+                    </div>
+
+                    <div style="float: right; display: inline;">
+                        <button type="button" class="btn btn-secondary" style="margin-right: 5px;">Download</button>
+                        <button type="button" class="btn btn-primary" style="margin-right: 5px;">Edit</button>
+                        <button type="button" class="btn btn-danger" >Delete</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
 
     <!-- Modal PRESCRIPTION -->
     <div class="modal fade bd-example-modal-lg" id="prescriptionModal" tabindex="-1" role="dialog" aria-labelledby="prescriptionModal" aria-hidden="true">
@@ -161,6 +184,9 @@
 
                     <label for = "pdgp" style = "display: block;"> DGP: </label>
                     <input type = "text" class="form-control" id="pdgp" name="pdgp">
+
+                    <label for = "pdiagnosis" style = "display: block;"> Diagnosis: </label>
+                    <input type = "text" class="form-control" id="pdiagnosis" name="pdiagnosis">
 
                     <label for = "pindications" style = "display: block;"> Indications: </label>
                     <textarea class="form-control" id="pindications" name="pindications" rows="3" style="margin-bottom: 10px;"></textarea>

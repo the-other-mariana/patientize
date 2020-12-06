@@ -43,18 +43,50 @@ $(document).ready(function() {
                 patDocs.attr('style', 'margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;');
                 var noDocTemplate = $('#noDocsLabel');
                 patDocs.append(noDocTemplate.html());
+            }else{
+                for(var i = 0; i < data.records.length; i++){
+                    var docTemplate;
+                    if(data.documents[i].type == "prescription"){
+                        docTemplate = $('#prescriptionTemplate');
+                        docTemplate.find('.text-primary').text("PRESC-" + (i + 1) + ": ");
+                        var times = (data.documents[i].appointment).split('T');
+                        docTemplate.find('.p-timestamp').text(times[0] + " at " + times[1]);
+                        docTemplate.find('.p-diagnosis').text("Diagnosis: " + data.documents[i].diagnosis);
+                    }
+                    
+                    
+
+                    patDocs.append(docTemplate.html());
+                }
             }
 
+        }
+        });
+    }
+
+    function loadPrescription(){
+        $.ajax({
+        async: true,
+        url: 'doctorDetails/',
+        type: 'GET',
+        dataType: 'json',
+        success: (doctor) => {
+            console.log(doctor);
+
+            $("#pdoctor").val("Dr. " + doctor.name);
+            $("#pdgp").val(doctor.dgp);
 
         }
         });
     }
 
     loadDetails();
-
+    loadPrescription();
+    /*
     setInterval(function(){
       // this will run after every 1 second
-      loadDetails();
-    }, 3000);
+      //loadDetails();
+    }, 6000);
+    */
 
 });

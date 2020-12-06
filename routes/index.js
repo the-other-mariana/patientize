@@ -346,6 +346,13 @@ router.get('/patient/patientDetails', function(req, res, next) {
 
 });
 
+// for AJAX resource
+router.get('/patient/doctorDetails', function(req, res, next) {
+  
+  res.send(currUser);
+
+});
+
 router.get('/patient/:id', function(req, res, next){
 
   patientIndex = parseInt(req.params.id);
@@ -394,6 +401,78 @@ router.post('/patient/addRecord', function(req, res, next){
           age: doc.patients[patientIndex].age,
           records: crecords,
           documents: doc.patients[patientIndex].documents
+        };
+
+        var cpatients = doc.patients;
+        cpatients[patientIndex] = newPatient;
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          patients: cpatients,
+        };
+
+        currUser = newvalues;
+        console.log(newPatient);
+        
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
+
+  var name = currUser.patients[patientIndex].name;
+  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+  req.session.errors = null;
+});
+
+router.post('/patient/addPrescription', function(req, res, next){
+  console.log("new prescription...");
+
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        newDoc = {
+          type: "prescription",
+          appointment: req.body.pappointment,
+          doctor: req.body.pdoctor,
+          dgp: req.body.pdgp,
+          diagnosis: req.body.pdiagnosis,
+          indications: req.body.pindications
+        };
+
+        var cdocs = doc.patients[patientIndex].documents;
+        cdocs.push(newDoc);
+
+        newPatient = {
+          lastname: doc.patients[patientIndex].lastname, 
+          name: doc.patients[patientIndex].name,
+          email: doc.patients[patientIndex].email,
+          mobile: doc.patients[patientIndex].mobile,
+          gender: doc.patients[patientIndex].gender,
+          birthdate: doc.patients[patientIndex].birthdate,
+          age: doc.patients[patientIndex].age,
+          records: doc.patients[patientIndex].records,
+          documents: cdocs
         };
 
         var cpatients = doc.patients;
