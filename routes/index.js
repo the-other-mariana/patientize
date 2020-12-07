@@ -368,6 +368,16 @@ router.post('/home', function(req, res, next){
 
 });
 
+router.post('/logout', function(req, res, next){
+  
+  successLog = false;
+  loggedUser = "";
+  currUser=null;
+  
+  res.render('index', { title: 'Patientize', errors: null, success: false, user: ""});
+  req.session.errors = null;
+});
+
 router.post('/patient/addRecord', function(req, res, next){
   console.log("new record...");
 

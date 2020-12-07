@@ -2,7 +2,7 @@
   <section>
     <script src="/javascripts/update-user.js"></script>
     <div class="card text-center">
-      <div class="card-header">
+      <div class="card-header" style="display: inline;">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
             <a class="nav-link active" href="#">Profile</a>
@@ -14,6 +14,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="">Help</a>
+          </li>
+          <li class="nav-item ml-auto">
+            <form action="/logout" method="post">
+              <button type="submit" class="btn btn-primary btn-sm">Log Out</button>
+            </form>
           </li>
         </ul>
       </div>

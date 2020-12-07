@@ -38,3 +38,7 @@ p {
     background-color: #f0f5fa;
 }
 
+.loader{
+  float: right!important;
+}
+
