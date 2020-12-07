@@ -32,7 +32,7 @@ Patientize is a prototype of web app that allows doctors to log in and maintain 
 
 The app starts with a simple login. <br />
 
-![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/login.png?raw=true) <br />
+![alt text](https://github.com/the-other-mariana/patientize/blob/master/evidences/login-02.png?raw=true) <br />
 
 You can register as follows: <br />
 
