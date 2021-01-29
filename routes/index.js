@@ -365,8 +365,12 @@ router.get('/patient/:id', function(req, res, next){
 });
 
 router.post('/home', function(req, res, next){
-
-  res.render('index', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser});
+  if (successLog == true){
+    res.render('user', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  }else{
+    res.render('index', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  }
+  
   req.session.errors = null;
 
 });
