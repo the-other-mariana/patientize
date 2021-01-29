@@ -94,6 +94,7 @@ router.post('/register/submit-account', function(req, res, next){
     gender: inputGender,
     email: "example@me.com",
     mobile: "111 111 1111",
+    templates: [],
     patients:[]
   };
   MongoClient.connect(url, function(err, db){
@@ -132,6 +133,8 @@ router.post('/user', function(req, res, next){
   var exists = false;
   var userID = "";
   var objectID;
+
+  console.log(req.body);
 
   MongoClient.connect(url, function(err, db){
     if(err != null){
@@ -228,6 +231,7 @@ router.post('/updateInfo', function(req, res, next){
           gender: doc.gender,
           email: req.body.upemail, 
           mobile: req.body.upmobile,
+          templates: doc.templates,
           patients: doc.patients
         };
 
@@ -303,6 +307,7 @@ router.post('/addPatient', function(req, res, next){
           gender: doc.gender,
           email: doc.email,
           mobile: doc.mobile,
+          templates: doc.templates,
           patients: cpatients,
         };
         currUser = newvalues;
@@ -434,7 +439,8 @@ router.post('/patient/addRecord', function(req, res, next){
           gender: doc.gender,
           email: doc.email,
           mobile: doc.mobile,
-          patients: cpatients,
+          templates: doc.templates,
+          patients: cpatients
         };
 
         currUser = newvalues;
@@ -507,6 +513,7 @@ router.post('/patient/addPrescription', function(req, res, next){
           gender: doc.gender,
           email: doc.email,
           mobile: doc.mobile,
+          templates: doc.templates,
           patients: cpatients,
         };
 
