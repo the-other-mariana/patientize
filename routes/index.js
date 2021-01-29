@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/patientizedb';
+const webtitle = 'Patientize';
 
 var currUser = null;
 var loggedUser = "";
@@ -10,11 +11,11 @@ var patientIndex = 33;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Patientize', success: req.session.success, errors: req.session.errors, user: req.session.user });
+  res.render('index', { title: webtitle, success: req.session.success, errors: req.session.errors, user: req.session.user });
   req.session.errors = null;
   req.session.success = null;
 
-  // get users from db
+  // get users from db for developer version
   MongoClient.connect(url, function(err, db){
     if(err != null){
       console.log("error at db connect");
@@ -124,7 +125,7 @@ router.post('/register/submit-account', function(req, res, next){
 });
 
 // for login button in home page
-router.post('/login', function(req, res, next){
+router.post('/user', function(req, res, next){
 
   var loginusername = req.body.loginusername;
   var loginpassword = req.body.loginpassword;
@@ -155,7 +156,9 @@ router.post('/login', function(req, res, next){
         loggedUser = req.session.user;
         successLog = true;
         console.log("logged user: " + req.session.user);
-        res.redirect('/');
+        //res.redirect('/');
+        res.render('user', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+        req.session.errors = null;
       }else{
         successLog = false;
         req.session.success = false;
@@ -240,7 +243,7 @@ router.post('/updateInfo', function(req, res, next){
     });
     
   });
-  res.render('index', {title: 'Patientize', success: successLog, user: loggedUser});
+  res.render('user', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
 });
 
 router.post('/patients', function(req, res, next){
