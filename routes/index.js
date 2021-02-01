@@ -8,6 +8,7 @@ var currUser = null;
 var loggedUser = "";
 var successLog = false;
 var patientIndex = 33;
+var templateIndex = 33;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -357,6 +358,12 @@ router.get('/patient/templateDetails', function(req, res, next) {
 
 });
 
+// for AJAX resource
+router.get('/templatesInfo', function(req, res, next) {
+  res.send(currUser.templates);
+
+});
+
 router.get('/patient/:id', function(req, res, next){
 
   patientIndex = parseInt(req.params.id);
@@ -599,5 +606,79 @@ router.post('/addTemplate', function(req, res, next){
   req.session.errors = null;
 });
 
+router.post('/patient/addDoc', function(req, res, next){
+  console.log("new doc...");
+  console.log(req.body);
+  /*
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        // type will change with every document type
+        newDoc = {
+          type: "prescription",
+          appointment: req.body.pappointment,
+          doctor: req.body.pdoctor,
+          dgp: req.body.pdgp,
+          diagnosis: req.body.pdiagnosis,
+          indications: req.body.pindications
+        };
+
+        var cdocs = doc.patients[patientIndex].documents;
+        cdocs.push(newDoc);
+
+        newPatient = {
+          lastname: doc.patients[patientIndex].lastname, 
+          name: doc.patients[patientIndex].name,
+          email: doc.patients[patientIndex].email,
+          mobile: doc.patients[patientIndex].mobile,
+          gender: doc.patients[patientIndex].gender,
+          birthdate: doc.patients[patientIndex].birthdate,
+          age: doc.patients[patientIndex].age,
+          records: doc.patients[patientIndex].records,
+          documents: cdocs
+        };
+
+        var cpatients = doc.patients;
+        cpatients[patientIndex] = newPatient;
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          templates: doc.templates,
+          patients: cpatients,
+        };
+
+        currUser = newvalues;
+        console.log(newPatient);
+        
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
+  */
+  var name = currUser.patients[patientIndex].name;
+  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+  req.session.errors = null;
+});
 
 module.exports = router;

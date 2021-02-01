@@ -93,18 +93,42 @@ $(document).ready(function() {
                 console.log(templates[i].ttitle);
                 var id = templates[i].ttitle.split(' ').join('');
                 var b = $('<input type="button"  id="tempButton" class="btn btn-primary" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px;" value="'+ templates[i].ttitle +'"/>');
-                var modalstr = '<div class="modal fade" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
-                    '<div class="modal-dialog modal-dialog-centered" role="document">'+
+                var modalstr = '<div class="modal fade bd-example-modal-lg" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
+                    '<div class="modal-dialog modal-lg modal-dialog-centered" role="document">'+
                     '<div class="modal-content">' + 
                         '<div class="modal-header">' +
-                        '<h5 class="modal-title" id="exampleModalLongTitle">New Template</h5>'+
+                        '<h5 class="modal-title" id="exampleModalLongTitle">' + templates[i].ttitle + '</h5>'+
                         '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
                             '<span aria-hidden="true">&times;</span>'+
                         '</button>'+
                         '</div>'+
-                        '<form action="/addPatient" method="post">'+
+                        '<form action="/patient/addDoc" method="post">'+
                         '<div class="modal-body">';
-                            
+                    keys = Object.keys(templates[i]);
+                    var fieldHtml = "";
+                    fieldHtml += '<label for="'+ keys[0] + '" style = "display: block;">Custom Template:</label>'+
+                                '<input type = "text" class="form-control" id = "'+ keys[0] +'" name = "'+ keys[0] +'" value="' + templates[i].ttitle +'"></input>';
+                    for (var k = 1; k < keys.length; k++){
+                        var fieldtext = keys[k].split('_').join(' ');
+                        var fieldtype = templates[i][keys[k]];
+                        console.log(fieldtext + " : " + fieldtype);
+                        
+                        if (fieldtype == "date"){
+                            fieldHtml += '<label for="'+ keys[k] + '" style = "display: block;">'+ fieldtext + ':</label>'+
+                                '<div class="col-10">'+
+                                    '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '">'+
+                                '</div>';
+                        }
+                        if (fieldtype == "text"){
+                            fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
+                            '<input type = "text" class="form-control" id = "'+ keys[k] +'" name = "'+ keys[k] +'"></input>';
+                        }
+                        if (fieldtype == "text area"){
+                            fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
+                            '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5" style="margin-bottom: 10px;"></textarea>';
+                        }
+                    }
+                    modalstr += fieldHtml;
                     modalstr += '</div>'+
                         '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>'+

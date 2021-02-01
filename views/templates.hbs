@@ -40,7 +40,7 @@
         Add Template
         </button>
 
-        <!-- PATIENTS GO HERE -->
+        <!-- TEMPLATES GO HERE -->
         <div id="templatesSection">
 
         </div>
@@ -79,6 +79,7 @@
     </div>
 </div>
 
+<!-- FIELD TEMPLATE -->
 <div class = "input" id="fieldTemplate" style="display: none;">
     <div class="form-group row">
         <label for="fname" class="col-sm-2 col-form-label col-form-label-lg">Field: </label>
@@ -92,6 +93,30 @@
                 <option value="text">Text (1 line)</option>
                 <option value="text area">Text Area (5 lines)</option>
             </select>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPLATE TEMPLATE -->
+<div id="templateTemplate" style="display: none;">
+    <div class="card text-left" style="margin-top: 20px;">
+        <div class="card-header" style="display: none;">
+            Template #
+        </div>
+        <div class="card-body">
+            <form action='/patientDetails' method="get" class="test">
+
+                <h3 class="text-primary" style="color:blue;">Last Name, Name</h3>
+
+                <p class="patient-gender">Gender</p>
+                <p class="patient-mobile">Mobile</p>
+                <p class="patient-email">Email</p>
+                <p class="patient-age">Age</p>
+
+                <button type="submit" class="btn btn-primary">Details</button>
+                <button type="button" class="btn btn-danger" style="float: right;">Delete</button>
+            </form>
+            
         </div>
     </div>
 </div>
