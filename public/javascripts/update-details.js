@@ -73,13 +73,36 @@ $(document).ready(function() {
 
             $("#pdoctor").val("Dr. " + doctor.name);
             $("#pdgp").val(doctor.dgp);
-
         }
+        });
+    }
+
+    
+    function loadTemplates(){
+        $.ajax({
+          async: true,
+          url: 'templateDetails/',
+          type: 'GET',
+          dataType: 'json',
+          success: (templates) => {
+            console.log(templates);
+            $('#buttonsSection').empty();
+            var buttonsSection = $('#buttonsSection');
+            
+            for(var i = 0; i < templates.length; i++){
+                console.log(templates[i].ttitle);
+                var b = $('<input type="button"  id="templateButton" class="btn btn-primary" data-toggle="modal" data-target="#templateModal" style="margin-bottom: 28px;" value="'+ templates[i].ttitle +'"/>');
+                
+                // TODO: GET TEMPLATE MODAL BY ID AND APPEND FIELDS
+                buttonsSection.append(b);
+            }
+          }
         });
     }
 
     loadDetails();
     loadPrescription();
+    loadTemplates();
     /*
     setInterval(function(){
       // this will run after every 1 second

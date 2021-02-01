@@ -350,6 +350,13 @@ router.get('/patient/doctorDetails', function(req, res, next) {
 
 });
 
+// for AJAX resource
+router.get('/patient/templateDetails', function(req, res, next) {
+  
+  res.send(currUser.templates);
+
+});
+
 router.get('/patient/:id', function(req, res, next){
 
   patientIndex = parseInt(req.params.id);
@@ -591,4 +598,6 @@ router.post('/addTemplate', function(req, res, next){
   res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
   req.session.errors = null;
 });
+
+
 module.exports = router;
