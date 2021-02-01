@@ -331,20 +331,8 @@ router.get('/patientsInfo', function(req, res, next) {
   // mongo db get data
   var cpatients = [];
 
-  MongoClient.connect(url, function(err, db){
-    if(err != null){
-      console.log("error at db connect");
-    }
-    var cursor = db.collection('doctors').find();
-    cursor.forEach(function(doc, err){
-      cpatients = doc.patients;
-
-    }, function(){
-      db.close();
-      res.send(cpatients);
-      
-    });
-  });
+  cpatients = currUser.patients;
+  res.send(cpatients);
 
 });
 
@@ -542,5 +530,65 @@ router.post('/templates', function(req, res, next){
   res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
   req.session.errors = null;
 
+});
+
+router.post('/addTemplate', function(req, res, next){
+  console.log("new template...");
+  console.log(req.body); 
+
+  var inputTemplate = req.body;
+  var keys = Object.keys(inputTemplate);
+  tLength = (keys.length - 1) / 2;
+
+  var newTemplate = {};
+  newTemplate['ttitle'] = inputTemplate['t-title'];
+  for (var i = 0; i < tLength; i++){
+    newKey = inputTemplate[Object.keys(inputTemplate)[(i * 2) + 1]].split(' ').join('_');
+    newVal = Object.keys(inputTemplate)[(i * 2) + 2];
+    newTemplate[newKey] = inputTemplate[newVal];
+  }
+  console.log(newTemplate);
+  console.log(Object.keys(newTemplate));
+  
+  // add the new template to the db
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        var ctemplates = doc.templates;
+        ctemplates.push(newTemplate);
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          templates: ctemplates,
+          patients: doc.patients,
+        };
+        currUser = newvalues;
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
+  res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  req.session.errors = null;
 });
 module.exports = router;
