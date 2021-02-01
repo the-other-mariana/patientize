@@ -5,11 +5,15 @@
     function appendNewField(){
         var fieldsSection = $('#fieldsSection');
         var fieldTemplate = $('#fieldTemplate');
-        fieldTemplate.find('.nameField').attr('name', 'nameField' + i);
-        fieldTemplate.find('.typeField').attr('name', 'typeField' + i);
+        fieldTemplate.find('.nameField').attr('name', 'nameField-' + i);
+        fieldTemplate.find('.typeField').attr('name', 'typeField-' + i);
 
         fieldsSection.append(fieldTemplate.html());
         i += 1;
+    }
+    function newTemplate(){
+        i = 0
+        $('#fieldsSection').empty();
     }
     
 </script>
@@ -32,7 +36,7 @@
         </ul>
     </div>
     <div class="card-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#templateModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#templateModal" onclick="newTemplate()">
         Add Template
         </button>
 
@@ -55,8 +59,14 @@
             </div>
             <form action="/addTemplate" method="post">
                 <div class="modal-body text-center">
-                    <button type="button" class="btn btn-primary" onclick="appendNewField()">Add Field</button>
+                    <div class="form-group row">
+                        <label for="ttitle" class="col-sm-4 col-form-label col-form-label-lg">Template Title: </label>
+                        <div class="col-sm-8">
+                            <input type = "text" class="form-control nameField" id = "ttitle" name = "ttitle">
+                        </div>
+                    </div>
                     <div id="fieldsSection"></div>
+                    <button type="button" class="btn btn-primary" onclick="appendNewField()">Add Field</button>
                     <br/>
                     <br/>
                 </div>
@@ -75,9 +85,9 @@
         <div class="col-sm-4">
             <input type = "text" class="form-control nameField" id = "fname" name = "fname">
         </div>
-        <label for="atemplate" class="col-sm-2 col-form-label col-form-label-lg">Type: </label>
+        <label for="ftype" class="col-sm-2 col-form-label col-form-label-lg">Type: </label>
         <div class="col-sm-4">
-            <select class="form-control typeField" id = "atemplate" name = "atemplate" style="vertical-align: middle;">
+            <select class="form-control typeField" id = "ftype" name = "atemplate" style="margin-top: 8px;">
                 <option value="date">Date</option>
                 <option value="text">Text (1 line)</option>
                 <option value="text area">Text Area (5 lines)</option>
