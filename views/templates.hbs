@@ -1,6 +1,18 @@
 <section>
     <script src="/javascripts/update-templates.js"></script>
-</section>
+<script>
+    var i = 0
+    function appendNewField(){
+        var fieldsSection = $('#fieldsSection');
+        var fieldTemplate = $('#fieldTemplate');
+        fieldTemplate.find('.nameField').attr('name', 'nameField' + i);
+        fieldTemplate.find('.typeField').attr('name', 'typeField' + i);
+
+        fieldsSection.append(fieldTemplate.html());
+        i += 1;
+    }
+    
+</script>
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
@@ -30,3 +42,47 @@
         </div>
     </div>
 </div>
+</section>
+<!-- Modal TEMPLATE -->
+<div class="modal fade bd-example-modal-lg" id="templateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Template</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/addTemplate" method="post">
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-primary" onclick="appendNewField()">Add Field</button>
+                    <div id="fieldsSection"></div>
+                    <br/>
+                    <br/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class = "input" id="fieldTemplate" style="display: none;">
+    <div class="form-group row">
+        <label for="fname" class="col-sm-2 col-form-label col-form-label-lg">Field: </label>
+        <div class="col-sm-4">
+            <input type = "text" class="form-control nameField" id = "fname" name = "fname">
+        </div>
+        <label for="atemplate" class="col-sm-2 col-form-label col-form-label-lg">Type: </label>
+        <div class="col-sm-4">
+            <select class="form-control typeField" id = "atemplate" name = "atemplate" style="vertical-align: middle;">
+                <option value="date">Date</option>
+                <option value="text">Text (1 line)</option>
+                <option value="text area">Text Area (5 lines)</option>
+            </select>
+        </div>
+    </div>
+</div>
+
