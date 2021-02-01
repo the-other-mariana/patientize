@@ -92,8 +92,8 @@ $(document).ready(function() {
             for(var i = 0; i < templates.length; i++){
                 console.log(templates[i].ttitle);
                 var id = templates[i].ttitle.split(' ').join('');
-                var b = $('<input type="button"  id="' + templates[i].ttitle +'" class="btn btn-primary" data-toggle="modal" data-target="#templateModal" onclick="idButton(this)" style="margin-bottom: 28px;" value="'+ templates[i].ttitle +'"/>');
-                var modalstr = '<div class="modal fade" id="templateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
+                var b = $('<input type="button"  id="tempButton" class="btn btn-primary" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px;" value="'+ templates[i].ttitle +'"/>');
+                var modalstr = '<div class="modal fade" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
                     '<div class="modal-dialog modal-dialog-centered" role="document">'+
                     '<div class="modal-content">' + 
                         '<div class="modal-header">' +
@@ -103,9 +103,9 @@ $(document).ready(function() {
                         '</button>'+
                         '</div>'+
                         '<form action="/addPatient" method="post">'+
-                        '<div class="modal-body">'+
+                        '<div class="modal-body">';
                             
-                        '</div>'+
+                    modalstr += '</div>'+
                         '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>'+
                             '<button type="submit" class="btn btn-primary">Save</button>'+
