@@ -134,6 +134,7 @@ router.post('/user', function(req, res, next){
   var userID = "";
   var objectID;
 
+  console.log(typeof req.body);
   console.log(req.body);
 
   MongoClient.connect(url, function(err, db){
@@ -252,7 +253,7 @@ router.post('/updateInfo', function(req, res, next){
 
 router.post('/patients', function(req, res, next){
 
-  res.render('patients', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser });
+  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
   req.session.errors = null;
 
 });
@@ -321,7 +322,7 @@ router.post('/addPatient', function(req, res, next){
     });
     
   });
-  res.render('patients', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser });
+  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
   req.session.errors = null;
 });
 
@@ -366,7 +367,7 @@ router.get('/patient/:id', function(req, res, next){
   patientIndex = parseInt(req.params.id);
   var name = currUser.patients[patientIndex].name;
   console.log("backend patient index: " + req.params.id);
-  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
 });
 
 router.post('/home', function(req, res, next){
@@ -536,4 +537,10 @@ router.post('/patient/addPrescription', function(req, res, next){
   req.session.errors = null;
 });
 
+router.post('/templates', function(req, res, next){
+
+  res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  req.session.errors = null;
+
+});
 module.exports = router;

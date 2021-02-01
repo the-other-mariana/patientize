@@ -1,0 +1,32 @@
+<section>
+    <script src="/javascripts/update-templates.js"></script>
+</section>
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+            <form action="/home" method="post">
+                <button type="submit" class="btn btn-light">Profile</button>
+            </form>
+            </li>
+            <li class="nav-item">
+                <form action="/patients" method="post">
+                <button type="submit" class="btn btn-light">Patients</button>
+                </form>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Templates</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#templateModal">
+        Add Template
+        </button>
+
+        <!-- PATIENTS GO HERE -->
+        <div id="templatesSection">
+
+        </div>
+    </div>
+</div>
