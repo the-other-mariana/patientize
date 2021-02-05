@@ -39,7 +39,13 @@ router.post('/restart-db', function(req, res, next){
       }
       if (result){
         console.log("user-data collection dropped");
-        res.redirect('/');
+        //res.redirect('/');
+        successLog = false;
+        loggedUser = "";
+        currUser=null;
+  
+        res.render('index', { title: 'Patientize', errors: null, success: false, user: ""});
+        req.session.errors = null;
       }
     });
   });
@@ -123,7 +129,13 @@ router.post('/register/submit-account', function(req, res, next){
     });
   });
 
-  res.redirect('/');
+  //res.redirect('/');
+  successLog = false;
+  loggedUser = "";
+  currUser=null;
+
+  res.render('index', { title: 'Patientize', errors: null, success: false, user: ""});
+  req.session.errors = null;
 });
 
 // for login button in home page
@@ -608,8 +620,8 @@ router.post('/addTemplate', function(req, res, next){
 
 router.post('/patient/addDoc', function(req, res, next){
   console.log("new doc...");
-  console.log(req.body);
-  /*
+  
+  
   MongoClient.connect(url, function(err, db){
     if(err != null){
       console.log("error at db connect");
@@ -618,17 +630,12 @@ router.post('/patient/addDoc', function(req, res, next){
     var cursor = db.collection('doctors').find();
     cursor.forEach(function(doc, err){
       if (doc.username == loggedUser){
-
-        // type will change with every document type
-        newDoc = {
-          type: "prescription",
-          appointment: req.body.pappointment,
-          doctor: req.body.pdoctor,
-          dgp: req.body.pdgp,
-          diagnosis: req.body.pdiagnosis,
-          indications: req.body.pindications
-        };
-
+        var newDoc = {type : "template"};
+        var keys = Object.keys(req.body);
+        for (var i = 0; i < keys.length; i++){
+          newDoc[keys[i]] = req.body[keys[i]];
+        }
+        console.log(newDoc);
         var cdocs = doc.patients[patientIndex].documents;
         cdocs.push(newDoc);
 
@@ -675,7 +682,7 @@ router.post('/patient/addDoc', function(req, res, next){
     });
     
   });
-  */
+  
   var name = currUser.patients[patientIndex].name;
   res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
   req.session.errors = null;

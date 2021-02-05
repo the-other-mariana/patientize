@@ -44,17 +44,24 @@ $(document).ready(function() {
                 var noDocTemplate = $('#noDocsLabel');
                 patDocs.append(noDocTemplate.html());
             }else{
+                console.log(data.documents.length);
                 for(var i = 0; i < data.documents.length; i++){
-                    var docTemplate;
+                    var docTemplate = "";
+                    
+                    // FOR PRESCRIPTION DOCS
                     if(data.documents[i].type == "prescription"){
                         docTemplate = $('#prescriptionTemplate');
                         docTemplate.find('.text-primary').text("PRESC-" + (i + 1) + ": ");
                         var times = (data.documents[i].appointment).split('T');
                         docTemplate.find('.p-timestamp').text(times[0] + " at " + times[1]);
                         docTemplate.find('.p-diagnosis').text("Diagnosis: " + data.documents[i].diagnosis);
+                        patDocs.append(docTemplate.html());
+                    }
+                    // FOR TEMPLATE DOCS
+                    if(data.documents[i].type == "template"){
+                        console.log("got a template");
                     }
                     
-                    patDocs.append(docTemplate.html());
                 }
             }
 
