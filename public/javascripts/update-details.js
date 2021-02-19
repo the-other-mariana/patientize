@@ -60,6 +60,29 @@ $(document).ready(function() {
                     // FOR TEMPLATE DOCS
                     if(data.documents[i].type == "template"){
                         console.log("got a template");
+                        keys = Object.keys(data.documents[i]);
+                        console.log(keys);
+                        var docStr = '<div id="templateTemplate">'+
+                                    '<div class="card text-left" style="margin: 10px;">'+
+                                        '<div class="card-header">'+ data.documents[i].ttitle +'</div>'+
+                                        '<div class="card-body">'+
+                                            '<form action="/patientDetails" method="get" class="test">'+
+                                            '<div class="form-group row">';
+                        for(var k = 2; k < keys.length; k++){
+                            var fieldtext = keys[k].split('_').join(' ');
+                            var fieldGlimpse = data.documents[i][keys[k]];
+                            docStr += '<label for = "'+ keys[k] + '" style = "display: block;" class="col-sm-4 col-form-label col-form-label-lg">' + fieldtext + '</label>';
+                            docStr += '<div class="col-sm-8">';
+                            docStr += '<input type = "text" class="form-control" id = "'+ keys[k] + '" name = "'+ keys[k] + '" value="'+ fieldGlimpse +'" disabled></input>';
+                            docStr += '</div>';
+                        }
+                        docStr += '</div>'+'<button type="button" class="btn btn-danger" style="float: right;">Delete</button>'+
+                                                    '</form>'+ 
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>';
+                        document.getElementById("docSection").insertAdjacentHTML('beforeend', docStr);
+                        
                     }
                     
                 }
