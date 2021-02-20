@@ -564,13 +564,14 @@ router.post('/addTemplate', function(req, res, next){
 
   var inputTemplate = req.body;
   var keys = Object.keys(inputTemplate);
-  tLength = (keys.length - 1) / 2;
+  tLength = (keys.length - 2) / 2;
 
   var newTemplate = {};
   newTemplate['ttitle'] = inputTemplate['t-title'];
+  newTemplate['tcolor'] = inputTemplate['t-color'];
   for (var i = 0; i < tLength; i++){
-    newKey = inputTemplate[Object.keys(inputTemplate)[(i * 2) + 1]].split(' ').join('_');
-    newVal = Object.keys(inputTemplate)[(i * 2) + 2];
+    newKey = inputTemplate[Object.keys(inputTemplate)[(i * 2) + 2]].split(' ').join('_');
+    newVal = Object.keys(inputTemplate)[(i * 2) + 3];
     newTemplate[newKey] = inputTemplate[newVal];
   }
   console.log(newTemplate);

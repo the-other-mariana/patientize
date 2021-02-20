@@ -63,17 +63,17 @@ $(document).ready(function() {
                         keys = Object.keys(data.documents[i]);
                         console.log(keys);
                         var docStr = '<div id="templateTemplate">'+
-                                    '<div class="card text-left" style="margin: 10px;">'+
-                                        '<div class="card-header">'+ data.documents[i].ttitle +'</div>'+
+                                    '<div class="card text-left" style="margin: 10px; border-color:'+ data.documents[i].tcolor + ';">'+
+                                        '<div class="card-header text-white" style="background-color:'+ data.documents[i].tcolor +';">'+ data.documents[i].ttitle +'</div>'+
                                         '<div class="card-body">'+
                                             '<form action="/patientDetails" method="get" class="test">'+
                                             '<div class="form-group row">';
-                        for(var k = 2; k < keys.length; k++){
+                        for(var k = 3; k < keys.length; k++){
                             var fieldtext = keys[k].split('_').join(' ');
                             var fieldGlimpse = data.documents[i][keys[k]];
                             docStr += '<label for = "'+ keys[k] + '" style = "display: block;" class="col-sm-4 col-form-label col-form-label-lg">' + fieldtext + '</label>';
                             docStr += '<div class="col-sm-8">';
-                            docStr += '<input type = "text" class="form-control" id = "'+ keys[k] + '" name = "'+ keys[k] + '" value="'+ fieldGlimpse +'" disabled></input>';
+                            docStr += '<input type = "text" class="form-control form-control-sm" id = "'+ keys[k] + '" name = "'+ keys[k] + '" value="'+ fieldGlimpse +'" style="border-color: '+ data.documents[i].tcolor +';" disabled></input>';
                             docStr += '</div>';
                         }
                         docStr += '</div>'+'<button type="button" class="btn btn-danger" style="float: right;">Delete</button>'+
@@ -122,7 +122,7 @@ $(document).ready(function() {
             for(var i = 0; i < templates.length; i++){
                 console.log(templates[i].ttitle);
                 var id = templates[i].ttitle.split(' ').join('');
-                var b = $('<input type="button"  id="tempButton" class="btn btn-primary" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px;" value="'+ templates[i].ttitle +'"/>');
+                var b = $('<input type="button"  id="tempButton" class="btn text-white" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px; background-color:'+templates[i].tcolor+'" value="'+ templates[i].ttitle +'"/>');
                 var modalstr = '<div class="modal fade bd-example-modal-lg" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
                     '<div class="modal-dialog modal-lg modal-dialog-centered" role="document">'+
                     '<div class="modal-content">' + 
@@ -136,8 +136,15 @@ $(document).ready(function() {
                         '<div class="modal-body">';
                     keys = Object.keys(templates[i]);
                     var fieldHtml = "";
-                    fieldHtml += '<label for="'+ keys[0] + '" style = "display: block;">Custom Template:</label>'+
-                                '<input type = "text" class="form-control" id = "'+ keys[0] +'" name = "'+ keys[0] +'" value="' + templates[i].ttitle +'"></input>';
+                    fieldHtml += '<div class="form-group row">';
+                    fieldHtml += '<label for="'+ keys[0] + '" class="col-sm-4 col-form-label col-form-label-lg">Custom Template:</label>'+
+                                '<div class="col-sm-4">'+
+                                '<input type = "text" class="form-control" id = "'+ keys[0] +'" name = "'+ keys[0] +'" value="' + templates[i].ttitle +'"></input>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                '<input type="color" class="form-control" id="'+ keys[1] + '" name="'+ keys[1] +'" value="'+ templates[i].tcolor +'"></input>'+
+                                '</div>'+
+                                '</div>';
                     for (var k = 1; k < keys.length; k++){
                         var fieldtext = keys[k].split('_').join(' ');
                         var fieldtype = templates[i][keys[k]];

@@ -42,3 +42,10 @@ p {
   float: right!important;
 }
 
+input[type="color"] {
+  padding: 2px;
+  height: 40px;
+  width: 50px;
+  vertical-align: middle;
+} 
+

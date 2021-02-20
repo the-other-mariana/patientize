@@ -15,7 +15,6 @@
         i = 0
         $('#fieldsSection').empty();
     }
-    
 </script>
 <div class="card text-center">
     <div class="card-header">
@@ -60,9 +59,13 @@
             <form action="/addTemplate" method="post">
                 <div class="modal-body text-center">
                     <div class="form-group row">
-                        <label for="ttitle" class="col-sm-4 col-form-label col-form-label-lg">Template Title: </label>
-                        <div class="col-sm-8">
+                        <label for="ttitle" class="col-sm-4 col-form-label col-form-label-lg">Template Title:</label>
+                        <div class="col-sm-4">
                             <input type = "text" class="form-control nameField" id = "ttitle" name = "t-title">
+                        </div>
+                        <label for="tcolor" class="col-sm-2 col-form-label col-form-label-lg">Color:</label>
+                        <div class="col-sm-2">
+                            <input type="color" class="form-control" id="tcolor" name="t-color" value="#ff0000"></input>
                         </div>
                     </div>
                     <div id="fieldsSection"></div>
@@ -90,8 +93,8 @@
         <div class="col-sm-4">
             <select class="form-control typeField" id = "ftype" name = "atemplate" style="margin-top: 8px;">
                 <option value="date">Date</option>
-                <option value="text">Text (1 line)</option>
-                <option value="text area">Text Area (5 lines)</option>
+                <option value="text">Small Text</option>
+                <option value="text area">Big Text</option>
             </select>
         </div>
     </div>
