@@ -164,6 +164,13 @@ $(document).ready(function() {
                             fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
                             '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5" style="margin-bottom: 10px;"></textarea>';
                         }
+                        if (fieldtype == "yes/no"){
+                            fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
+                            '<select class="form-control typeField" id = "'+keys[k]+'" name = "'+ keys[k] +'" style="margin-top: 8px;">'+
+                                '<option value="Yes">Yes</option>'+
+                                '<option value="No">No</option>'+
+                            '</select>';
+                        }
                     }
                     modalstr += fieldHtml;
                     modalstr += '</div>'+
