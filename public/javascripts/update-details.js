@@ -59,13 +59,22 @@ $(document).ready(function() {
                     }
                     // FOR TEMPLATE DOCS
                     if(data.documents[i].type == "template"){
+                        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(data.documents[i].tcolor);
+                        color = {
+                            r: parseInt(result[1], 16),
+                            g: parseInt(result[2], 16),
+                            b: parseInt(result[3], 16)
+                        };
+                        factor = 1.5
+                        diffColor = { r: parseInt((255 - color.r) / factor), g: parseInt((255 - color.g) / factor), b: parseInt((255 - color.b) / factor) }
+                        colorStr = 'rgb(' + (color.r + diffColor.r) + ", " + (color.g + diffColor.g) + ", " + (color.b + diffColor.b) + ")"
                         console.log("got a template");
                         keys = Object.keys(data.documents[i]);
                         console.log(keys);
                         var docStr = '<div id="templateTemplate">'+
                                     '<div class="card text-left" style="margin: 10px; border-color:'+ data.documents[i].tcolor + ';">'+
                                         '<div class="card-header text-white" style="background-color:'+ data.documents[i].tcolor +';">'+ data.documents[i].ttitle +'</div>'+
-                                        '<div class="card-body">'+
+                                        '<div class="card-body" style="background-color: '+ colorStr +'">'+
                                             '<form action="/patientDetails" method="get" class="test">'+
                                             '<div class="form-group row">';
                         for(var k = 3; k < keys.length; k++){
@@ -122,7 +131,7 @@ $(document).ready(function() {
             for(var i = 0; i < templates.length; i++){
                 console.log(templates[i].ttitle);
                 var id = templates[i].ttitle.split(' ').join('');
-                var b = $('<input type="button"  id="tempButton" class="btn text-white" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px; background-color:'+templates[i].tcolor+'" value="'+ templates[i].ttitle +'"/>');
+                var b = $('<input type="button"  id="tempButton" class="btn text-white" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px; margin-right:5px; background-color:'+templates[i].tcolor+'" value="'+ templates[i].ttitle +'"/>');
                 var modalstr = '<div class="modal fade bd-example-modal-lg" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
                     '<div class="modal-dialog modal-lg modal-dialog-centered" role="document">'+
                     '<div class="modal-content">' + 
@@ -162,11 +171,11 @@ $(document).ready(function() {
                         }
                         if (fieldtype == "text area"){
                             fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
-                            '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5" style="margin-bottom: 10px;"></textarea>';
+                            '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5"></textarea>';
                         }
                         if (fieldtype == "yes/no"){
                             fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
-                            '<select class="form-control typeField" id = "'+keys[k]+'" name = "'+ keys[k] +'" style="margin-top: 8px;">'+
+                            '<select class="form-control typeField" id = "'+keys[k]+'" name = "'+ keys[k] +'" >'+
                                 '<option value="Yes">Yes</option>'+
                                 '<option value="No">No</option>'+
                             '</select>';

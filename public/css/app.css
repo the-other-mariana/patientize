@@ -26,20 +26,40 @@ p {
 }
 
 .modal-header {
-  background-color: #bfd7f2;
+  background-color: #ffffff;
+  color: #1980ff;
 }
 
 .modal-footer {
-  background-color: #bfd7f2;
+  background-color: #ffffff;
 }
 
 .modal-body
 {
-    background-color: #f0f5fa;
+  background-color: #ffffff;
 }
 
 .loader{
   float: right!important;
+}
+
+select{
+  border-color: #1980ff;
+}
+
+textarea, select {
+  border: 1px solid #85c1ff !important;
+}
+
+input[type=text],
+input[type=date],
+input[type=datetime-local],
+input[type=password]{
+  border-color: #85c1ff;
+}
+
+input[type=color]{
+  border: 0px solid;
 }
 
 input[type="color"] {

@@ -15,8 +15,9 @@ function loadTemplates(){
             keys = Object.keys(templates[i]);
             var templateStr = '<div id="templateTemplate">'+
                                     '<div class="card text-left" style="margin-top: 20px; border-color:' + templates[i].tcolor + ';">'+
-                                        '<div class="card-header text-white" style="background-color:' + templates[i].tcolor + ';">' + templates[i].ttitle +'</div>'+
+                                        //'<div class="card-header text-white" style="background-color:' + templates[i].tcolor + ';">' + templates[i].ttitle +'</div>'+
                                         '<div class="card-body">' +
+                                            '<h3 style="color:'+ templates[i].tcolor +';">'+ templates[i].ttitle +'</h3>' +
                                             '<form action="/patientDetails" method="get" class="test">'+
                                             '<div class="form-group row">';
             
