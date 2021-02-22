@@ -50,15 +50,15 @@ The webpage allows the user to customize their forms to capture their patients i
 
 If you click on Add Template, the following appears, prompting the user to first title their new template.<br />
 
-![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/new-template.png?raw=true)
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/new-template-02.png?raw=true)
 
 To add a custom field to your template, you click on Add Field button. Then you name your field and choose its type of data: date, text, big text or a yes/no question. When you finish, it would look something like this. <br />
 
-![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/new-template-fields.png?raw=true)
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/new-template-fields-02.png?raw=true)
 
 Click on Save, and your Dosis Change template is ready for use. <br />
 
-![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-added.png?raw=true)
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-added-02.png?raw=true)
 
 #### 2.2 Use the Template
 
@@ -66,16 +66,16 @@ To see how your template works, go to Patients tab. Click on Add Patient in orde
 
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/patients-tab.png?raw=true)
 
-Click on Details and you will see all the patient's info you need! Also, you will see a button that has your template's title, Dosis Change in this case. <br />
+Click on Details and you will see all the patient's info you asked for! Also, you will see a button that has your template's title, Dosis Change in this case. <br />
 
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-button.png?raw=true)
 
 When you click it, your custom template now asks you the info you decided with your own fields! <br />
 
-![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-form.png?raw=true)
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-form-02.png?raw=true)
 
 After clicking on Save, your Dosis Change file is saved in your patient, with the color you chose so that you identify it quicker when you get more and more files in your patient! <br />
 
-![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-form-added.png?raw=true)
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-form-added-02.png?raw=true)
 
-You can now manage your patients with the information you need. Add templates as much as you need. <br />
+You can now manage your patients with the information you need. Add templates as much as you wish. <br />
