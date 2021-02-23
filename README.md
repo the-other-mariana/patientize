@@ -46,7 +46,7 @@ The webpage allows the user to customize their forms to capture their patients i
 
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-tab.png?raw=true)
 
-#### 2.1 Create a Template
+### 2.1 Create a Template
 
 If you click on Add Template, the following appears, prompting the user to first title their new template.<br />
 
@@ -60,7 +60,7 @@ Click on Save, and your Dosis Change template is ready for use. <br />
 
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-added-02.png?raw=true)
 
-#### 2.2 Use the Template
+### 2.2 Use the Template
 
 To see how your template works, go to Patients tab. Click on Add Patient in order to fill all the info of your new patient. When you have an added patient, it looks as follows. <br />
 
