@@ -619,6 +619,17 @@ router.post('/addTemplate', function(req, res, next){
   req.session.errors = null;
 });
 
+router.get('/:tempId', function(req, res, next){
+  console.log("I want to delete template " + req.params.tempId);
+  res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser});
+  //currUser.templates
+  /*
+  templateIndex = parseInt(req.params.tempId);
+  var name = currUser.patients[patientIndex].name;
+  console.log("backend patient index: " + req.params.id);
+  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name}); */
+});
+
 router.post('/patient/addDoc', function(req, res, next){
   console.log("new doc...");
   

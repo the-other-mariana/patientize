@@ -18,7 +18,7 @@ function loadTemplates(){
                                         //'<div class="card-header text-white" style="background-color:' + templates[i].tcolor + ';">' + templates[i].ttitle +'</div>'+
                                         '<div class="card-body">' +
                                             '<h3 style="color:'+ templates[i].tcolor +';">'+ templates[i].ttitle +'</h3>' +
-                                            '<form action="/patientDetails" method="get" class="test">'+
+                                            '<form action="/'+ i + '" method="get">' +
                                             '<div class="form-group row">';
             
             for (var k = 2; k < keys.length; k++){
@@ -30,7 +30,8 @@ function loadTemplates(){
                 templateStr += '</div>';
             }
             //templateStr +=  '<button type="submit" class="btn btn-primary">Details</button>'+
-            templateStr += '</div>'+'<button type="button" class="btn btn-danger" style="float: right;">Delete</button>'+
+            templateStr += '</div>'+
+                        '<button type="submit" class="btn btn-danger" style="float: right;">Delete</button>'+
                         '</form>'+ 
                     '</div>'+
                 '</div>'+
