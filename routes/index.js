@@ -622,7 +622,8 @@ router.post('/addTemplate', function(req, res, next){
 router.get('/:tempId', function(req, res, next){
   console.log("I want to delete template " + req.params.tempId);
   res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser});
-  //currUser.templates
+  templateIndex = parseInt(req.params.tempId);
+  currUser.templates.splice(templateIndex, 1);
   /*
   templateIndex = parseInt(req.params.tempId);
   var name = currUser.patients[patientIndex].name;
