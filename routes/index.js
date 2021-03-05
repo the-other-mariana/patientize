@@ -621,9 +621,46 @@ router.post('/addTemplate', function(req, res, next){
 
 router.get('/:tempId', function(req, res, next){
   console.log("I want to delete template " + req.params.tempId);
-  res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser});
+  
   templateIndex = parseInt(req.params.tempId);
   currUser.templates.splice(templateIndex, 1);
+  dtemplates = currUser.templates;
+  console.log(dtemplates);
+
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          templates: dtemplates,
+          patients: doc.patients,
+        };
+        currUser = newvalues;
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+  });
+  res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser});
   /*
   templateIndex = parseInt(req.params.tempId);
   var name = currUser.patients[patientIndex].name;
