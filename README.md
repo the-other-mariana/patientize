@@ -79,3 +79,9 @@ After clicking on Save, your Dosis Change file is saved in your patient, with th
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/template-form-added-02.png?raw=true)
 
 You can now manage your patients with the information you need. Add templates as much as you wish. <br />
+
+### 2.3 Delete a Template
+
+By clicking on a template's red button that says 'Delete', a template is deleted and you will no longer see the button on each patient view. However, if you created a template of the deleted type, the document history remains. <br />
+
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/delete-template.png?raw=true) <br />
