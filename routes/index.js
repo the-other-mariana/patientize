@@ -558,6 +558,13 @@ router.post('/templates', function(req, res, next){
 
 });
 
+router.get('/templates', function(req, res, next){
+
+  res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  req.session.errors = null;
+
+});
+
 router.post('/addTemplate', function(req, res, next){
   console.log("new template...");
   console.log(req.body); 
@@ -619,14 +626,14 @@ router.post('/addTemplate', function(req, res, next){
   req.session.errors = null;
 });
 
-router.get('/:tempId', function(req, res, next){
+router.get('/delete/:tempId', function(req, res, next){
   console.log("I want to delete template " + req.params.tempId);
   
   templateIndex = parseInt(req.params.tempId);
   currUser.templates.splice(templateIndex, 1);
   dtemplates = currUser.templates;
   console.log(dtemplates);
-
+  
   MongoClient.connect(url, function(err, db){
     if(err != null){
       console.log("error at db connect");
@@ -660,7 +667,8 @@ router.get('/:tempId', function(req, res, next){
       db.close();
     });
   });
-  res.render('templates', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser});
+  
+  res.redirect('/templates');
   /*
   templateIndex = parseInt(req.params.tempId);
   var name = currUser.patients[patientIndex].name;

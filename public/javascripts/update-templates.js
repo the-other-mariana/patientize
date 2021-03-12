@@ -18,7 +18,7 @@ function loadTemplates(){
                                         //'<div class="card-header text-white" style="background-color:' + templates[i].tcolor + ';">' + templates[i].ttitle +'</div>'+
                                         '<div class="card-body">' +
                                             '<h3 style="color:'+ templates[i].tcolor +';">'+ templates[i].ttitle +'</h3>' +
-                                            '<form action="/'+ i + '" method="get">' +
+                                            '<form action="/delete/'+ i + '" method="get">' +
                                             '<div class="form-group row">';
             
             for (var k = 2; k < keys.length; k++){
