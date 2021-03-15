@@ -47,6 +47,7 @@ $(document).ready(function() {
                 console.log(data.documents.length);
                 for(var i = 0; i < data.documents.length; i++){
                     var docTemplate = "";
+                    var id = data.documents[i].ttitle.split(' ').join('');
                     
                     // FOR PRESCRIPTION DOCS
                     if(data.documents[i].type == "prescription"){
@@ -85,11 +86,15 @@ $(document).ready(function() {
                             docStr += '<input type = "text" class="form-control form-control-sm" id = "'+ keys[k] + '" name = "'+ keys[k] + '" value="'+ fieldGlimpse +'" style="border-color: '+ data.documents[i].tcolor +';" disabled></input>';
                             docStr += '</div>';
                         }
-                        docStr += '</div>'+'<button type="button" class="btn btn-danger" style="float: right;">Delete</button>'+
-                                                    '</form>'+ 
-                                                '</div>'+
-                                            '</div>'+
-                                        '</div>';
+                        docStr += '</div>'+
+                                    '<div style="float: right; display: inline;">' +
+                                        '<button type="button" class="btn btn-danger" style="margin-right: 5px;">Delete</button>'+
+                                        '<button type="button"  id="tempButton" class="btn btn-secondary" data-toggle="modal" data-target="#' + id + '" style="margin-right: 5px;">Edit</>' +
+                                    '</div>'+
+                                '</form>'+ 
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
                         document.getElementById("docSection").insertAdjacentHTML('beforeend', docStr);
                         
                     }

@@ -669,11 +669,6 @@ router.get('/delete/:tempId', function(req, res, next){
   });
   
   res.redirect('/templates');
-  /*
-  templateIndex = parseInt(req.params.tempId);
-  var name = currUser.patients[patientIndex].name;
-  console.log("backend patient index: " + req.params.id);
-  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name}); */
 });
 
 router.post('/patient/addDoc', function(req, res, next){
