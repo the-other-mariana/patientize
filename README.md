@@ -85,3 +85,9 @@ You can now manage your patients with the information you need. Add templates as
 By clicking on a template's red button that says 'Delete', a template is deleted and you will no longer see the button on each patient view. However, if you created a template of the deleted type, the document history remains. <br />
 
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/delete-template.png?raw=true) <br />
+
+### 2.3 Edit A Document
+
+Once in a patient view, you can choose to edit an existing -and available- document, if you click on the document's Edit button. <br />
+
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-mode-docs.png?raw=true) <br />
