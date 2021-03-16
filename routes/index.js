@@ -743,8 +743,69 @@ router.post('/patient/addDoc', function(req, res, next){
 
 router.get('/patient/editDoc/:docIndex', function(req, res, next){
   console.log("I want to edit doc " + req.params.docIndex);
+  console.log(req.query);
+  var docIndex = req.params.docIndex
   
-  
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+        var newDoc = {type : "template"};
+        var keys = Object.keys(req.query);
+        for (var i = 0; i < keys.length; i++){
+          newDoc[keys[i]] = req.query[keys[i]];
+        }
+        console.log(newDoc);
+        var cdocs = doc.patients[patientIndex].documents;
+        cdocs[docIndex] = newDoc
+
+        newPatient = {
+          lastname: doc.patients[patientIndex].lastname, 
+          name: doc.patients[patientIndex].name,
+          email: doc.patients[patientIndex].email,
+          mobile: doc.patients[patientIndex].mobile,
+          gender: doc.patients[patientIndex].gender,
+          birthdate: doc.patients[patientIndex].birthdate,
+          age: doc.patients[patientIndex].age,
+          records: doc.patients[patientIndex].records,
+          documents: cdocs
+        };
+
+        var cpatients = doc.patients;
+        cpatients[patientIndex] = newPatient;
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          templates: doc.templates,
+          patients: cpatients,
+        };
+
+        currUser = newvalues;
+        console.log(newPatient);
+        
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
   
   res.redirect('/patient/' + patientIndex);
 });

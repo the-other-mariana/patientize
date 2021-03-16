@@ -168,7 +168,7 @@ $(document).ready(function() {
                         if (fieldtype == "date"){
                             fieldHtml += '<label for="'+ keys[k] + '" style = "display: block;">'+ fieldtext + ':</label>'+
                                 '<div class="col-10">'+
-                                    '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '">'+
+                                    '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '"></input>' +
                                 '</div>';
                         }
                         if (fieldtype == "text"){
@@ -229,7 +229,7 @@ $(document).ready(function() {
                         if (fieldtype == "date"){
                             efieldHtml += '<label for="'+ keys[k] + '" style = "display: block;">'+ fieldtext + ':</label>'+
                                 '<div class="col-10">'+
-                                    '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '>'+
+                                    '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '"></input>' +
                                 '</div>';
                         }
                         if (fieldtype == "text"){
