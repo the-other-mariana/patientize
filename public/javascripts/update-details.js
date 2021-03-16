@@ -89,7 +89,7 @@ $(document).ready(function() {
                         docStr += '</div>'+
                                     '<div style="float: right; display: inline;">' +
                                         '<button type="button" class="btn btn-danger" style="margin-right: 5px;">Delete</button>'+
-                                        '<button type="button"  id="tempButton" class="btn btn-secondary" data-toggle="modal" data-target="#' + id + 'Edit' + '" style="margin-right: 5px;">Edit</>' +
+                                        '<button type="button"  id="'+ 'doc'+ i + '" class="btn btn-secondary" data-toggle="modal" data-target="#' + id + 'Edit' + '" style="margin-right: 5px;" onclick="idTemplate(this)">Edit</>' +
                                     '</div>'+
                                 '</form>'+ 
                             '</div>'+
@@ -198,8 +198,7 @@ $(document).ready(function() {
                     '</div>'+
                 '</div>';
                 document.getElementById("templateModalsSection").insertAdjacentHTML('beforeend', modalstr);
-                // EDIT MODAL
-                
+                // EDIT DOC MODAL
                 var editmodalstr = '<div class="modal fade bd-example-modal-lg" id="' + id + 'Edit' + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
                     '<div class="modal-dialog modal-lg modal-dialog-centered" role="document">'+
                     '<div class="modal-content">' + 
@@ -209,7 +208,7 @@ $(document).ready(function() {
                             '<span aria-hidden="true">&times;</span>'+
                         '</button>'+
                         '</div>'+
-                        '<form action="/patient/addDoc" method="post">'+
+                        '<form>'+
                         '<div class="modal-body">';
                     keys = Object.keys(templates[i]);
                     var efieldHtml = "";
@@ -230,7 +229,7 @@ $(document).ready(function() {
                         if (fieldtype == "date"){
                             efieldHtml += '<label for="'+ keys[k] + '" style = "display: block;">'+ fieldtext + ':</label>'+
                                 '<div class="col-10">'+
-                                    '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '">'+
+                                    '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '>'+
                                 '</div>';
                         }
                         if (fieldtype == "text"){
@@ -253,7 +252,7 @@ $(document).ready(function() {
                     editmodalstr += '</div>'+
                         '<div class="modal-footer">'+
                             '<button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>'+
-                            '<button type="submit" class="btn btn-primary">Save</button>'+
+                            '<button type="submit" class="btn btn-primary" formaction="/patient/editDoc/" formmethod="get" id="' + 'Submit' + id + 'Edit' +'">Save</button>'+
                         '</div>'+
                         '</form>'+
                     '</div>'+

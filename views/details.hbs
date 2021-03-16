@@ -16,6 +16,34 @@
             let soMany = 10;
             console.log(`This is ${soMany} times easier!`);
         }
+
+        function idTemplate(e) {
+            console.log("Edit Doc: " + e.id);
+            var buttonId = e.id
+            target = $('#' + e.id).data('target');
+            console.log("Target: " + target);
+            var decodedJson = decodeURIComponent("{{{patJSON}}}");
+            var jsonObj = JSON.parse(decodedJson);
+            console.log("From server: " + jsonObj.name);
+            var docIndex = parseInt((buttonId).replace('doc', ''));
+            docInfo = jsonObj.documents[docIndex];
+            console.log(docInfo);
+
+            var keys = Object.keys(docInfo);
+            if (docInfo[keys[0]] == "template") {
+                // key 0: type
+                // key 1: ttitle
+                // key 2: tcolor
+                var modal = $(target);
+                for (var k = 3; k < keys.length; k++) {
+                    console.log(keys[k] + ": " + docInfo[keys[k]]);
+                    modal.find('#' + keys[k]).val(docInfo[keys[k]]);
+                }
+                var id = docInfo[keys[1]].split(' ').join('');
+                modal.find('#Submit' + id + 'Edit').attr('formaction', '/patient/editDoc/' + docIndex);
+            }
+            
+        }
     </script>
 
     <label class="btn btn-secondary" style="margin-bottom: 20px;">

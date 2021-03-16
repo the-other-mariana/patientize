@@ -381,7 +381,7 @@ router.get('/patient/:id', function(req, res, next){
   patientIndex = parseInt(req.params.id);
   var name = currUser.patients[patientIndex].name;
   console.log("backend patient index: " + req.params.id);
-  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name, patJSON: encodeURIComponent(JSON.stringify(currUser.patients[patientIndex])) });
 });
 
 router.post('/home', function(req, res, next){
@@ -473,7 +473,7 @@ router.post('/patient/addRecord', function(req, res, next){
   });
 
   var name = currUser.patients[patientIndex].name;
-  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name, patJSON: encodeURIComponent(JSON.stringify(currUser.patients[patientIndex])) });
   req.session.errors = null;
 });
 
@@ -547,7 +547,7 @@ router.post('/patient/addPrescription', function(req, res, next){
   });
 
   var name = currUser.patients[patientIndex].name;
-  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+  res.render('details', { title: 'Patientize', errors: req.session.errors, success: successLog, user: loggedUser, patientName: name, patJSON: encodeURIComponent(JSON.stringify(currUser.patients[patientIndex]))});
   req.session.errors = null;
 });
 
@@ -737,8 +737,16 @@ router.post('/patient/addDoc', function(req, res, next){
   });
   
   var name = currUser.patients[patientIndex].name;
-  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name});
+  res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name, patJSON: encodeURIComponent(JSON.stringify(currUser.patients[patientIndex])) });
   req.session.errors = null;
+});
+
+router.get('/patient/editDoc/:docIndex', function(req, res, next){
+  console.log("I want to edit doc " + req.params.docIndex);
+  
+  
+  
+  res.redirect('/patient/' + patientIndex);
 });
 
 module.exports = router;
