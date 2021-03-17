@@ -86,8 +86,8 @@ By clicking on a template's red button that says 'Delete', a template is deleted
 
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/delete-template.png?raw=true) <br />
 
-### 2.3 Edit A Document
+### 2.4 Edit A Document
 
 Once in a patient view, you can choose to edit an existing -and available- document, if you click on the document's Edit button. It will appear with the doc's info so that you change only what you want. <br />
 
-![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-modal-docs-02.png?raw=true) <br />
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-modal-docs-03.png?raw=true) <br />
