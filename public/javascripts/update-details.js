@@ -76,7 +76,7 @@ $(document).ready(function() {
                                     '<div class="card text-left" style="margin: 10px; border-color:'+ data.documents[i].tcolor + '; ">'+
                                         '<div class="card-header text-white" style="background-color:'+ data.documents[i].tcolor +';">'+ data.documents[i].ttitle +'</div>'+
                                         '<div class="card-body" style="background-color: '+ colorStr +'">'+
-                                            '<form action="/patientDetails" method="get" class="test">'+
+                                            '<form action="/patient/deleteDoc/' + i + '" method="get" class="test">'+
                                             '<div class="form-group row">';
                         for(var k = 3; k < keys.length; k++){
                             var fieldtext = keys[k].split('_').join(' ');
@@ -89,7 +89,7 @@ $(document).ready(function() {
                         docStr += '</div>'+
                                     '<div style="float: right; display: inline;">' +
                                         '<button type="button"  id="'+ 'doc'+ i + '" class="btn btn-secondary rounded-btn" data-toggle="modal" data-target="#' + id + 'Edit' + '" style="margin-right: 5px;" onclick="idTemplate(this)">Edit</>' +
-                                        '<button type="button" class="btn btn-danger rounded-btn" style="margin-right: 5px;">Delete</button>'+
+                                        '<button type="submit" class="btn btn-danger rounded-btn" style="margin-right: 5px;">Delete</button>'+
                                         
                                     '</div>'+
                                 '</form>'+ 

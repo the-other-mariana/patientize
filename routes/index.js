@@ -810,4 +810,67 @@ router.get('/patient/editDoc/:docIndex', function(req, res, next){
   res.redirect('/patient/' + patientIndex);
 });
 
+router.get('/patient/deleteDoc/:docIndexDelete', function(req, res, next){
+  console.log("I want to delete doc " + req.params.docIndexDelete);
+  docIndexDelete = parseInt(req.params.docIndexDelete);
+  currUser.patients[patientIndex].documents.splice(docIndexDelete, 1);
+  ddocs = currUser.patients[patientIndex].documents
+  console.log(ddocs);
+  
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        newPatient = {
+          lastname: doc.patients[patientIndex].lastname, 
+          name: doc.patients[patientIndex].name,
+          email: doc.patients[patientIndex].email,
+          mobile: doc.patients[patientIndex].mobile,
+          gender: doc.patients[patientIndex].gender,
+          birthdate: doc.patients[patientIndex].birthdate,
+          age: doc.patients[patientIndex].age,
+          records: doc.patients[patientIndex].records,
+          documents: ddocs
+        };
+
+        var cpatients = doc.patients;
+        cpatients[patientIndex] = newPatient;
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          templates: doc.templates,
+          patients: cpatients,
+        };
+
+        currUser = newvalues;
+        console.log(newPatient);
+        
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
+  });
+  
+  res.redirect('/patient/' + patientIndex);
+});
+
 module.exports = router;
