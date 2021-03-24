@@ -1,6 +1,6 @@
 <section>
     <script src="/javascripts/update-user.js"></script>
-    <div class="card text-center">
+    <div class="card text-center" style="box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 10px;">
         <div class="card-header" style="display: inline;">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
@@ -17,9 +17,7 @@
                     </form>
                 </li>
                 <li class="nav-item ml-auto">
-                    <form action="/logout" method="post">
-                    <button type="submit" class="btn btn-primary btn-sm">Log Out</button>
-                    </form>
+                    
                 </li>
             </ul>
         </div>
@@ -57,12 +55,20 @@
                                 <h5 class="card-title">Contact</h5>
                                 <p id="uemail" class="card-text"></p>
                                 <p id="umobile" class="card-text"></p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal">
+                                <button type="button" class="btn btn-primary rounded-btn" data-toggle="modal" data-target="#contactModal">
                                     Edit Info
                                 </button>
                             </div>
                         </div>
 
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <form action="/logout" method="post">
+                                <button type="submit" class="btn btn-danger rounded-btn" style="">Log Out</button>
+                            </form>
                         </div>
                     </div>
 
@@ -97,10 +103,11 @@
 
                         <label for = "ipatients" style = "display: block;"> Patients: </label>
                         <input type = "text" class="form-control" id = "ipatients" name = "ipatients" disabled>
-
                     </div>
                 </div>
+
               </div>
+              
               <div class="col">
                 <img id="Ads" src="/uploads/ad-01.jpg" alt="your image" height=100% width=100%>
               </div>
@@ -147,8 +154,8 @@
                     <br/>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary rounded-btn" data-dismiss="modal">Dismiss</button>
+                <button type="submit" class="btn btn-primary rounded-btn">Save</button>
                 </div>
             </form>
             </div>

@@ -73,7 +73,7 @@ $(document).ready(function() {
                         keys = Object.keys(data.documents[i]);
                         console.log(keys);
                         var docStr = '<div id="templateTemplate">'+
-                                    '<div class="card text-left" style="margin: 10px; border-color:'+ data.documents[i].tcolor + ';">'+
+                                    '<div class="card text-left" style="margin: 10px; border-color:'+ data.documents[i].tcolor + '; ">'+
                                         '<div class="card-header text-white" style="background-color:'+ data.documents[i].tcolor +';">'+ data.documents[i].ttitle +'</div>'+
                                         '<div class="card-body" style="background-color: '+ colorStr +'">'+
                                             '<form action="/patientDetails" method="get" class="test">'+
@@ -88,8 +88,9 @@ $(document).ready(function() {
                         }
                         docStr += '</div>'+
                                     '<div style="float: right; display: inline;">' +
-                                        '<button type="button" class="btn btn-danger" style="margin-right: 5px;">Delete</button>'+
-                                        '<button type="button"  id="'+ 'doc'+ i + '" class="btn btn-secondary" data-toggle="modal" data-target="#' + id + 'Edit' + '" style="margin-right: 5px;" onclick="idTemplate(this)">Edit</>' +
+                                        '<button type="button"  id="'+ 'doc'+ i + '" class="btn btn-secondary rounded-btn" data-toggle="modal" data-target="#' + id + 'Edit' + '" style="margin-right: 5px;" onclick="idTemplate(this)">Edit</>' +
+                                        '<button type="button" class="btn btn-danger rounded-btn" style="margin-right: 5px;">Delete</button>'+
+                                        
                                     '</div>'+
                                 '</form>'+ 
                             '</div>'+
@@ -136,7 +137,7 @@ $(document).ready(function() {
             for(var i = 0; i < templates.length; i++){
                 console.log(templates[i].ttitle);
                 var id = templates[i].ttitle.split(' ').join('');
-                var b = $('<input type="button"  id="tempButton" class="btn text-white" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px; margin-right:5px; background-color:'+templates[i].tcolor+'" value="'+ templates[i].ttitle +'"/>');
+                var b = $('<input type="button"  id="tempButton" class="btn text-white rounded-btn" data-toggle="modal" data-target="#' + id + '" onclick="idButton(this)" style="margin-bottom: 28px; margin-right:5px; background-color:'+templates[i].tcolor+'" value="'+ templates[i].ttitle +'"/>');
                 // NEW DOC MODAL
                 var modalstr = '<div class="modal fade bd-example-modal-lg" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">'+
                     '<div class="modal-dialog modal-lg modal-dialog-centered" role="document">'+
@@ -169,29 +170,33 @@ $(document).ready(function() {
                             fieldHtml += '<label for="'+ keys[k] + '" style = "display: block;">'+ fieldtext + ':</label>'+
                                 '<div class="col-10">'+
                                     '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '"></input>' +
-                                '</div>';
+                                '</div>'+
+                                '<br/>';
                         }
                         if (fieldtype == "text"){
                             fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
-                            '<input type = "text" class="form-control" id = "'+ keys[k] +'" name = "'+ keys[k] +'"></input>';
+                            '<input type = "text" class="form-control" id = "'+ keys[k] +'" name = "'+ keys[k] +'"></input>'+
+                            '<br/>';
                         }
                         if (fieldtype == "text area"){
                             fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
-                            '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5"></textarea>';
+                            '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5"></textarea>'+
+                            '<br/>';
                         }
                         if (fieldtype == "yes/no"){
                             fieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
                             '<select class="form-control typeField" id = "'+keys[k]+'" name = "'+ keys[k] +'" >'+
                                 '<option value="Yes">Yes</option>'+
                                 '<option value="No">No</option>'+
-                            '</select>';
+                            '</select>'+
+                            '<br/>';
                         }
                     }
                     modalstr += fieldHtml;
                     modalstr += '</div>'+
                         '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>'+
-                            '<button type="submit" class="btn btn-primary">Save</button>'+
+                            '<button type="button" class="btn btn-secondary rounded-btn" data-dismiss="modal">Dismiss</button>'+
+                            '<button type="submit" class="btn btn-primary rounded-btn">Save</button>'+
                         '</div>'+
                         '</form>'+
                     '</div>'+
@@ -230,29 +235,33 @@ $(document).ready(function() {
                             efieldHtml += '<label for="'+ keys[k] + '" style = "display: block;">'+ fieldtext + ':</label>'+
                                 '<div class="col-10">'+
                                     '<input class="form-control" type="date" id="' + keys[k] + '" name="' + keys[k] + '"></input>' +
-                                '</div>';
+                                '</div>'+
+                                '<br/>';
                         }
                         if (fieldtype == "text"){
                             efieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
-                            '<input type = "text" class="form-control" id = "'+ keys[k] +'" name = "'+ keys[k] +'"></input>';
+                            '<input type = "text" class="form-control" id = "'+ keys[k] +'" name = "'+ keys[k] +'"></input>'+
+                            '<br/>';
                         }
                         if (fieldtype == "text area"){
                             efieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
-                            '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5"></textarea>';
+                            '<textarea class="form-control" id="'+ keys[k] +'" name="'+ keys[k] +'" rows="5"></textarea>'+
+                            '<br/>';
                         }
                         if (fieldtype == "yes/no"){
                             efieldHtml += '<label for = "'+ keys[k] +'" style = "display: block;">'+ fieldtext +':</label>'+
                             '<select class="form-control typeField" id = "'+keys[k]+'" name = "'+ keys[k] +'" >'+
                                 '<option value="Yes">Yes</option>'+
                                 '<option value="No">No</option>'+
-                            '</select>';
+                            '</select>'+
+                            '<br/>';
                         }
                     }
                     editmodalstr += efieldHtml;
                     editmodalstr += '</div>'+
                         '<div class="modal-footer">'+
-                            '<button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>'+
-                            '<button type="submit" class="btn btn-primary" formaction="/patient/editDoc/" formmethod="get" id="' + 'Submit' + id + 'Edit' +'">Save</button>'+
+                            '<button type="button" class="btn btn-secondary rounded-btn" data-dismiss="modal">Dismiss</button>'+
+                            '<button type="submit" class="btn btn-primary rounded-btn" formaction="/patient/editDoc/" formmethod="get" id="' + 'Submit' + id + 'Edit' +'">Save</button>'+
                         '</div>'+
                         '</form>'+
                     '</div>'+

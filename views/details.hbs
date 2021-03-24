@@ -46,10 +46,10 @@
         }
     </script>
 
-    <label class="btn btn-secondary" style="margin-bottom: 20px;">
+    <label class="btn btn-secondary rounded-btn" style="margin-bottom: 20px;">
         Details: {{ patientName }}
     </label>
-    <div class="card" id="patientDetails" style="margin-bottom: 20px;">
+    <div class="card" id="patientDetails" style="margin-bottom: 20px; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
         <div class="card-body">
 
             <h3 class="text-primary">Last Name, Name</h3>
@@ -65,14 +65,14 @@
     </div>
 
     <div style="display: inline;">
-        <label class="btn btn-secondary" style="margin-bottom: 20px;">
+        <label class="btn btn-secondary rounded-btn" style="margin-bottom: 20px;">
             Clinical Records
         </label>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recordModal" style="margin-bottom: 20px;">
+        <button type="button" class="btn btn-primary rounded-btn" data-toggle="modal" data-target="#recordModal" style="margin-bottom: 20px;">
         Add Record
         </button>
     </div>
-    <div class="card" id="patientRecords" style="margin-bottom: 20px; ">
+    <div class="card" id="patientRecords" style="margin-bottom: 20px; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
         <!-- RECORDS WHO HERE -->
         <div id="recordSection">
 
@@ -81,10 +81,10 @@
 
     <div style="display: inline;">
         
-        <label class="btn btn-secondary" style="margin-bottom: 20px;">
+        <label class="btn btn-secondary rounded-btn" style="margin-bottom: 20px;">
             Medical Documents
         </label>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#prescriptionModal" style="margin-bottom: 20px;">
+        <button type="button" class="btn btn-primary rounded-btn" data-toggle="modal" data-target="#prescriptionModal" style="margin-bottom: 20px;">
         Prescription
         </button>
         <div id="buttonsSection" style="display: inline;">
@@ -93,7 +93,7 @@
         
     </div>
     
-    <div class="card" id="patientDocs" style="margin-bottom: 20px; ">
+    <div class="card" id="patientDocs" style="margin-bottom: 20px; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
         <!-- DOCS WHO HERE -->
         <div id="docSection">
 
@@ -104,12 +104,12 @@
     
     <!-- EMPTY SPACES -->
     <div id="noRecordsLabel" style="display: none;">
-        <label class="btn btn-light text-primary" style="margin: 0px; background-color: #f0f5fa;">
+        <label class="btn btn-light text-primary rounded-btn" style="margin: 0px; background-color: #f0f5fa;">
             No Clinical Records Yet
         </label>
     </div>
     <div id="noDocsLabel" style="display: none;">
-        <label class="btn btn-light text-primary" style="margin: 0px; background-color: #f0f5fa;">
+        <label class="btn btn-light text-primary rounded-btn" style="margin: 0px; background-color: #f0f5fa;">
             No Documents Yet
         </label>
     </div>
@@ -181,7 +181,7 @@
     </div>
     <!-- PRESCRIPTION TEMPLATE -->
     <div id="prescriptionTemplate" style="display: none;">
-        <div class="card text-left" style="margin: 10px;">
+        <div class="card text-left" style="margin: 10px; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
             <div class="card-body">
                 <form action='' method="get" class="cr-form">
                     <div style="display: inline;">

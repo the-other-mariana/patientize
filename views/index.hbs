@@ -10,10 +10,12 @@
       </ul>
     </section>
   {{/if}}
-  <div class="card bg-light mb-3">
+  <div class="d-flex align-items-center justify-content-center">
+  <div class="card" style="width: 40%; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
 
-      <div class="card-header">Log in with your account: </div>
+      
       <div class="card-body">
+        <h4 class="card-title text-center text-primary">Sign In</h4>
         <form>
           <div class = "input">
             <label for = "loginusername" style = "display: block;"> Username </label>
@@ -25,13 +27,14 @@
           </div>
           <br/>
           <br/>
-          <button type = "submit" class="btn btn-primary" formaction="/user" formmethod="post">Log In</button>
+          <button type = "submit" class="btn btn-primary rounded-btn" formaction="/user" formmethod="post">Log In</button>
           <a class="btn btn-link" href="https://mail.google.com/">Forgot Password?</a>
-          <button type = "submit" class="btn btn-primary" formaction="/register" formmethod="post" style="float: right; margin-left: 5px;">Register</button>
+          <button type = "submit" class="btn btn-primary rounded-btn" formaction="/register" formmethod="post" style="float: right; margin-left: 5px;">Register</button>
 
-          <button type = "submit" class="btn btn-secondary" formaction="/restart-db" formmethod="post" style="float: right;">Restart DB</button>
+          <button type = "submit" class="btn btn-secondary rounded-btn" formaction="/restart-db" formmethod="post" style="float: right;">Restart DB</button>
         </form>
       </div>
+  </div>
   </div>
 {{/if}}
 

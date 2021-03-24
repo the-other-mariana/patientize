@@ -16,7 +16,7 @@
         $('#fieldsSection').empty();
     }
 </script>
-<div class="card text-center">
+<div class="card text-center" style="box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 10px;">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
@@ -35,7 +35,7 @@
         </ul>
     </div>
     <div class="card-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#templateModal" onclick="newTemplate()">
+        <button type="button" class="btn btn-primary rounded-btn" data-toggle="modal" data-target="#templateModal" onclick="newTemplate()">
         Add Template
         </button>
 
@@ -69,13 +69,13 @@
                         </div>
                     </div>
                     <div id="fieldsSection"></div>
-                    <button type="button" class="btn btn-primary" onclick="appendNewField()">Add Field</button>
+                    <button type="button" class="btn btn-primary rounded-btn" onclick="appendNewField()">Add Field</button>
                     <br/>
                     <br/>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary rounded-btn" data-dismiss="modal">Dismiss</button>
+                    <button type="submit" class="btn btn-primary rounded-btn">Save</button>
                 </div>
             </form>
         </div>
@@ -117,8 +117,8 @@
                 <p class="patient-email">Email</p>
                 <p class="patient-age">Age</p>
 
-                <button type="submit" class="btn btn-primary">Details</button>
-                <button type="button" class="btn btn-danger" style="float: right;">Delete</button>
+                <button type="submit" class="btn btn-primary rounded-btn">Details</button>
+                <button type="button" class="btn btn-danger rounded-btn" style="float: right;">Delete</button>
             </form>
             
         </div>

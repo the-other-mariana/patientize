@@ -31,7 +31,7 @@ function loadTemplates(){
             }
             //templateStr +=  '<button type="submit" class="btn btn-primary">Details</button>'+
             templateStr += '</div>'+
-                        '<button type="submit" class="btn btn-danger" style="float: right;">Delete</button>'+
+                        '<button type="submit" class="btn btn-danger rounded-btn" style="float: right;">Delete</button>'+
                         '</form>'+ 
                     '</div>'+
                 '</div>'+

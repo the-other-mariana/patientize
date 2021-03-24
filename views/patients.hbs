@@ -11,7 +11,7 @@
     $('#pbirth').val(today);
 </script>
 
-<div class="card text-center">
+<div class="card text-center" style="box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 10px;">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
@@ -30,7 +30,7 @@
         </ul>
     </div>
     <div class="card-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#patientModal">
+        <button type="button" class="btn btn-primary rounded-btn" data-toggle="modal" data-target="#patientModal">
         Add Patient
         </button>
 
@@ -44,7 +44,7 @@
 
 <!-- PATIENT TEMPLATE -->
 <div id="patientTemplate" style="display: none;">
-    <div class="card text-left" style="margin-top: 20px;">
+    <div class="card text-left" style="margin-top: 20px; border-radius: 10px;">
         <div class="card-header" style="display: none;">
             Patient #
         </div>
@@ -57,9 +57,10 @@
                 <p class="patient-mobile">Mobile</p>
                 <p class="patient-email">Email</p>
                 <p class="patient-age">Age</p>
+                <br/>
 
-                <button type="submit" class="btn btn-primary">Details</button>
-                <button type="button" class="btn btn-danger" style="float: right;">Delete</button>
+                <button type="submit" class="btn btn-primary rounded-btn">Details</button>
+                <button type="button" class="btn btn-danger rounded-btn" style="float: right;">Delete</button>
             </form>
             
         </div>

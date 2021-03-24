@@ -1,6 +1,7 @@
 body {
   padding-top: 40px;
   background-color:#bfd7f2;
+  font-family: Trebuchet;
 }
 
 .welcome {
@@ -69,3 +70,10 @@ input[type="color"] {
   vertical-align: middle;
 } 
 
+.rounded-btn {
+  border-radius: 10px;
+}
+
+.rounded-btn:hover {
+  box-shadow: 0 0 10px 0 rgba(54, 117, 255, 0.678);
+}
