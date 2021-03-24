@@ -271,6 +271,13 @@ router.post('/patients', function(req, res, next){
 
 });
 
+router.get('/patients', function(req, res, next){
+
+  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  req.session.errors = null;
+
+});
+
 router.post('/addPatient', function(req, res, next){
   console.log("new patient...");
 
@@ -382,6 +389,50 @@ router.get('/patient/:id', function(req, res, next){
   var name = currUser.patients[patientIndex].name;
   console.log("backend patient index: " + req.params.id);
   res.render('details', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patientName: name, patJSON: encodeURIComponent(JSON.stringify(currUser.patients[patientIndex])) });
+});
+
+router.get('/deletePatient/:idDelete', function(req, res, next){
+
+  deleteIndex = parseInt(req.params.idDelete);
+  currUser.patients.splice(deleteIndex, 1);
+  dpatients = currUser.patients;
+  console.log(dpatients);
+  
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          templates: doc.templates,
+          patients: dpatients
+        };
+        currUser = newvalues;
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+  });
+  
+  res.redirect('/patients');
 });
 
 router.post('/home', function(req, res, next){
