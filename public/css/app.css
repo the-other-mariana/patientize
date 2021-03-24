@@ -77,3 +77,13 @@ input[type="color"] {
 .rounded-btn:hover {
   box-shadow: 0 0 10px 0 rgba(54, 117, 255, 0.678);
 }
+
+.fake-link-btn {
+  background-color: transparent; 
+  padding:0px; 
+  font-size:x-large;
+}
+
+.fake-link-btn:hover {
+  text-decoration:underline;
+}

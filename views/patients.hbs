@@ -42,7 +42,7 @@
 </div>
 
 
-<!-- PATIENT TEMPLATE -->
+<!-- NEW PATIENT TEMPLATE -->
 <div id="patientTemplate" style="display: none;">
     <div class="card text-left" style="margin-top: 20px; border-radius: 10px;">
         <div class="card-header" style="display: none;">
@@ -51,16 +51,20 @@
         <div class="card-body">
             <form action='/patientDetails' method="get" class="test">
 
-                <h3 class="text-primary" style="color:blue;">Last Name, Name</h3>
+                <button type="submit" class="btn text-primary fake-link-btn">Last Name, Name</button>
 
                 <p class="patient-gender">Gender</p>
                 <p class="patient-mobile">Mobile</p>
                 <p class="patient-email">Email</p>
                 <p class="patient-age">Age</p>
-                <br/>
 
-                <button type="submit" class="btn btn-primary rounded-btn">Details</button>
-                <button type="button" class="btn btn-danger rounded-btn" style="float: right;">Delete</button>
+                
+            </form>
+            <form>
+                <button type="submit" class="btn btn-primary rounded-btn" style="float: right; margin-right: 5px;">Edit</button>
+            </form>
+            <form>
+                <button type="submit" class="btn btn-primary rounded-btn" style="float: right; margin-right: 5px;">Edit</button>
             </form>
             
         </div>
@@ -77,7 +81,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="/addPatient" method="post">
+          <form>
             <div class="modal-body">
                 <div class = "input">
                     <label for = "plname" style = "display: block;"> Last Name(s): </label>
@@ -115,7 +119,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
-              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="submit" class="btn btn-primary" formaction="/addPatient" formmethod="post">Save</button>
             </div>
           </form>
         </div>
