@@ -23,6 +23,7 @@ $(document).ready(function() {
                 patTemplate.find('.text-primary').text(data[i].lastname + ", " + data[i].name);
                 patTemplate.find('.test').attr('action', '/patient/' + i);
                 patTemplate.find('.test2').attr('action', '/deletePatient/' + i);
+                patTemplate.find('.edit-btn').attr('id', 'pat' + i);
                 patTemplate.find('.patient-gender').text("Gender: " + data[i].gender);
                 patTemplate.find('.patient-mobile').text("Mobile: " + data[i].mobile);
                 patTemplate.find('.patient-email').text("Email: " + data[i].email);

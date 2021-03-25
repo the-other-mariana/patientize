@@ -266,14 +266,14 @@ router.post('/updateInfo', function(req, res, next){
 
 router.post('/patients', function(req, res, next){
 
-  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patJSON: encodeURIComponent(JSON.stringify(currUser.patients)) });
   req.session.errors = null;
 
 });
 
 router.get('/patients', function(req, res, next){
 
-  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patJSON: encodeURIComponent(JSON.stringify(currUser.patients)) });
   req.session.errors = null;
 
 });
@@ -342,7 +342,7 @@ router.post('/addPatient', function(req, res, next){
     });
     
   });
-  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser });
+  res.render('patients', { title: webtitle, errors: req.session.errors, success: successLog, user: loggedUser, patJSON: encodeURIComponent(JSON.stringify(currUser.patients)) });
   req.session.errors = null;
 });
 
@@ -430,6 +430,80 @@ router.get('/deletePatient/:idDelete', function(req, res, next){
     }, function(){
       db.close();
     });
+  });
+  
+  res.redirect('/patients');
+});
+
+router.get('/editPatient/:editPatientIndex', function(req, res, next){
+  console.log("I want to edit pat " + req.params.editPatientIndex);
+  console.log(req.query);
+  var patIndex = req.params.editPatientIndex
+  
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+
+    var dob = new Date(req.query.epbirth);  
+    //calculate month difference from current date in time  
+    var month_diff = Date.now() - dob.getTime();  
+      
+    //convert the calculated difference in date format  
+    var age_dt = new Date(month_diff);   
+      
+    //extract year from date      
+    var year = age_dt.getUTCFullYear();  
+      
+    //now calculate the age of the user  
+    var cage = Math.abs(year - 1970);
+
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == loggedUser){
+
+        newPatient = {
+          lastname: req.query.eplname, 
+          name: req.query.epname,
+          email: req.query.epemail,
+          mobile: req.query.epmobile,
+          gender: req.query.epgender,
+          birthdate: req.query.epbirth,
+          age: cage,
+          records: doc.patients[patIndex].records,
+          documents: doc.patients[patIndex].documents
+        };
+
+        var cpatients = doc.patients;
+        cpatients[patIndex] = newPatient;
+
+        myquery = {username: loggedUser};
+        newvalues = {
+          username: doc.username, 
+          password: doc.password, 
+          name: doc.name, 
+          profilePic: doc.profilePic,
+          specialty: doc.specialty,
+          dgp: doc.dgp,
+          gender: doc.gender,
+          email: doc.email,
+          mobile: doc.mobile,
+          templates: doc.templates,
+          patients: cpatients,
+        };
+
+        currUser = newvalues;
+        console.log(newPatient);
+        
+        db.collection("doctors").updateOne(myquery, newvalues, function(err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+        });
+      }
+    }, function(){
+      db.close();
+    });
+    
   });
   
   res.redirect('/patients');
