@@ -91,3 +91,13 @@ By clicking on a template's red button that says 'Delete', a template is deleted
 Once in a patient view, you can choose to edit an existing -and available- document, if you click on the document's Edit button. It will appear with the doc's info so that you change only what you want. <br />
 
 ![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/edit-modal-docs-03.png?raw=true) <br />
+
+## 3. Password Recovery
+
+If you cannot remember your Patientize user password, click on the Forgot Password? link, and you will see this screen. <br />
+
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/forgot-password.png?raw=true) <br />
+
+Then, enter the email you put in your account. After that, click on Send and we will send you an email with your password. <br />
+
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/email-body.png?raw=true) <br />
