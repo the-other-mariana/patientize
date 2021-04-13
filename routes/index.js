@@ -78,56 +78,6 @@ router.post('/register', function(req, res, next){
 
 });
 
-// go to forgot password page
-router.post('/forgotPassword', function(req, res, next){
-
-  res.render('forgot-password', { title: 'Patientize', errors: null, success: false, user: ""});
-  req.session.errors = null;
-
-});
-
-router.post('/forgotPassword/send', function(req, res, next){
-  var email = req.body.forgotemail;
-  var forgotUser = "";
-  var forgotPassword = "";
-
-  MongoClient.connect(url, function(err, db){
-    if(err != null){
-      console.log("error at db connect");
-    }
-    var cursor = db.collection('doctors').find();
-    cursor.forEach(function(doc, err){
-      if (doc.email == email){
-        forgotUser = doc.username;
-        forgotPassword = doc.password;
-      }
-    }, function(){
-      db.close();
-
-      var mailOptions = {
-        from: 'patientize.user@outlook.com',
-        to: email,
-        subject: 'Your Patientize Password',
-        text: ('Hello User, \nThis is your account information:\n\nUsername: ' + forgotUser + '\nPassword: ' + forgotPassword + '\n\nRegards,\nPatientize Team')
-      };
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-          res.render('forgot-password', { title: 'Patientize', errors: null, success: false, user: ""});
-          req.session.errors = null;
-        }
-      });
-      
-    });
-  });
-
-  
-  
-
-});
-
 // for register account button
 router.post('/register/submit-account', function(req, res, next){
 
@@ -195,6 +145,62 @@ router.post('/register/submit-account', function(req, res, next){
 
   res.render('index', { title: 'Patientize', errors: null, success: false, user: ""});
   req.session.errors = null;
+});
+
+// go to forgot password page
+router.post('/forgotPassword', function(req, res, next){
+
+  res.render('forgot-password', { title: 'Patientize', errors: null, success: false, user: ""});
+  req.session.errors = null;
+
+});
+
+router.post('/forgotPassword/ok', function(req, res, next){
+
+  res.redirect('/');
+
+});
+
+router.post('/forgotPassword/send', function(req, res, next){
+  var email = req.body.forgotemail;
+  var forgotUser = "";
+  var forgotPassword = "";
+  var foundemail = "";
+
+  MongoClient.connect(url, function(err, db){
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.email == email){
+        forgotUser = doc.username;
+        forgotPassword = doc.password;
+        foundemail = doc.email;
+      }
+    }, function(){
+      db.close();
+
+      var mailOptions = {
+        from: 'patientize.user@outlook.com',
+        to: foundemail,
+        subject: 'Your Patientize Password',
+        text: ('Hello User, \nThis is your account information:\n\nUsername: ' + forgotUser + '\nPassword: ' + forgotPassword + '\n\nRegards,\nPatientize Team')
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+          res.render('email-sent', { title: 'Patientize', errors: null, success: false, user: "", message:'Something Went Wrong. Please make sure the email is correct.'});
+          req.session.errors = null;
+        } else {
+          console.log('Email sent: ' + info.response);
+          res.render('email-sent', { title: 'Patientize', errors: null, success: false, user: "", message:'Check your email to find your Patientize Password!'});
+          req.session.errors = null;
+        }
+      });
+      
+    });
+  });
 });
 
 // for login button in home page
