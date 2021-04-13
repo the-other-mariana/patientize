@@ -96,7 +96,7 @@ Once in a patient view, you can choose to edit an existing -and available- docum
 
 If you cannot remember your Patientize user password, click on the Forgot Password? link, and you will see this screen. <br />
 
-![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/forgot-password.png?raw=true) <br />
+![image](https://github.com/the-other-mariana/patientize/blob/master/evidences/forgot-password-02.png?raw=true) <br />
 
 Then, enter the email you put in your account. After that, click on Send and we will send you an email with your password. <br />
 
