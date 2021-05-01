@@ -71,7 +71,7 @@ router.post('/register', function(req, res, next){
       }else{
         console.log("has users");
       }
-      res.render('register', { title: 'Patientize', errors: req.session.errors });
+      res.render('register', { title: 'Patientize', errors: req.session.errors, taken: false });
     });
   });
   req.session.errors = null;
@@ -113,38 +113,68 @@ router.post('/register/submit-account', function(req, res, next){
     templates: [],
     patients:[]
   };
+  var taken = false;
+
   MongoClient.connect(url, function(err, db){
-    db.collection('doctors').count().then((count) => {
-      console.log("number of users from db: " + count);
-
-      // if creating super user
-      if(count == 0){
-        // add it to db
-        console.log("no users");
+    if(err != null){
+      console.log("error at db connect");
+    }
+    var cursor = db.collection('doctors').find();
+    cursor.forEach(function(doc, err){
+      if (doc.username == inputUsername){
+        console.log("Taken true");
+        taken = true;
       }
-      // if super user already set up
-      else{
-        console.log("has users")
-      }
-
-      db.collection('doctors').insertOne(item, function(err, result){
-        userID = (result.insertedId).toString();
-        objectID = result.insertedId;
-
-        console.log('Item inserted, id:' + (result.insertedId).toString());
-
-      });
+    }, function(){
       db.close();
+
+      if (!taken){
+        console.log("Unique user")
+        MongoClient.connect(url, function(err, db){
+          db.collection('doctors').count().then((count) => {
+            console.log("number of users from db: " + count);
+      
+            // if creating super user
+            if(count == 0){
+              // add it to db
+              console.log("no users");
+            }
+            // if super user already set up
+            else{
+              console.log("has users")
+            }
+      
+            db.collection('doctors').insertOne(item, function(err, result){
+              userID = (result.insertedId).toString();
+              objectID = result.insertedId;
+      
+              console.log('Item inserted, id:' + (result.insertedId).toString());
+      
+            });
+            db.close();
+          });
+        });
+      
+        //res.redirect('/');
+        successLog = false;
+        loggedUser = "";
+        currUser=null;
+      
+        res.render('index', { title: 'Patientize', errors: null, success: false, user: ""});
+        req.session.errors = null;
+      } else {
+        console.log("This user already exists.")
+        successLog = false;
+        loggedUser = "";
+        currUser=null;
+      
+        res.render('register', { title: 'Patientize', errors: req.session.errors, taken: true });
+        req.session.errors = null;
+      }
+
     });
   });
-
-  //res.redirect('/');
-  successLog = false;
-  loggedUser = "";
-  currUser=null;
-
-  res.render('index', { title: 'Patientize', errors: null, success: false, user: ""});
-  req.session.errors = null;
+  
 });
 
 // go to forgot password page

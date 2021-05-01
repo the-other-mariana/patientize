@@ -18,53 +18,112 @@
         return true;
     }
 </script>
-
-<div class="d-flex align-items-center justify-content-center">
-    <div class="card" style="width: 40%; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
-        <div class="card-body">
-            <h4 class="card-title text-center text-primary">Create An Account</h4>
-            <form>
-                <div class = "input">
-                    <label for = "username" style = "display: block;"> Username: </label>
-                    <input type = "text" class="form-control is-invalid" id = "username" name = "username" placeholder="Dr. Something">
-                </div>
-                <small id="invalid-username" style="display: none;">
-                    This is a mandatory field.
-                </small>
-                <div class = "input">
-                    <label for = "password" style = "display: block;"> Password: </label>
-                    <input type = "text" class="form-control is-invalid" id = "password" name = "password" placeholder="Password">
-                </div>
-                <small id="invalid-password-empty" style="display: none;">
-                    This is a mandatory field.
-                </small>
-                <small id="invalid-password-short" style="display: none;">
-                    Invalid Password. Your password must be 8-20 characters long, contain letters and numbers.
-                </small>
-                <div class = "input">
-                    <label for = "fullname" style = "display: block;"> Full Name: </label>
-                    <input type = "text" class="form-control" id = "fullname" name = "fullname" placeholder="Your full name">
-                </div>
-                <div class = "input">
-                    <label for = "specialty" style = "display: block;"> Specialty: </label>
-                    <input type = "text" class="form-control" id = "specialty" name = "specialty" placeholder="Your specialty">
-                </div>
-                <div class = "input">
-                    <label for = "dgp" style = "display: block;"> DGP Number: </label>
-                    <input type = "text" class="form-control" id = "dgp" name = "dgp" placeholder="000 0000">
-                </div>
-                
-                <div class = "input">
-                    <label for = "gender" style = "display: block;"> Gender </label>
-                    <select class="form-control" id = "gender" name = "gender">
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                    </select>
-                </div>
-                <br/>
-                <br/>
-                <button type = "submit" class="btn btn-primary" formaction="/register/submit-account" formmethod="post" onClick="return validInput()">Register</button>
-            </form>
+{{# if taken }}
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="card" style="width: 40%; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
+            <div class="card-body">
+                <h4 class="card-title text-center text-primary">Create An Account</h4>
+                <form>
+                    <div class = "input">
+                        <label for = "username" style = "display: block;"> Username: </label>
+                        <input type = "text" class="form-control is-invalid" id = "username" name = "username" placeholder="Dr. Something">
+                    </div>
+                    <small id="invalid-username" style="display: none;">
+                        This is a mandatory field.
+                    </small>
+                    <div class = "input">
+                        <label for = "password" style = "display: block;"> Password: </label>
+                        <input type = "text" class="form-control is-invalid" id = "password" name = "password" placeholder="Password">
+                    </div>
+                    <small id="invalid-password-empty" style="display: none;">
+                        This is a mandatory field.
+                    </small>
+                    <small id="invalid-password-short" style="display: none;">
+                        Invalid Password. Your password must be 8-20 characters long, contain letters and numbers.
+                    </small>
+                    <div class = "input">
+                        <label for = "fullname" style = "display: block;"> Full Name: </label>
+                        <input type = "text" class="form-control" id = "fullname" name = "fullname" placeholder="Your full name">
+                    </div>
+                    <div class = "input">
+                        <label for = "specialty" style = "display: block;"> Specialty: </label>
+                        <input type = "text" class="form-control" id = "specialty" name = "specialty" placeholder="Your specialty">
+                    </div>
+                    <div class = "input">
+                        <label for = "dgp" style = "display: block;"> DGP Number: </label>
+                        <input type = "text" class="form-control" id = "dgp" name = "dgp" placeholder="000 0000">
+                    </div>
+                    
+                    <div class = "input">
+                        <label for = "gender" style = "display: block;"> Gender </label>
+                        <select class="form-control" id = "gender" name = "gender">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        </select>
+                    </div>
+                    <br/>
+                    <br/>
+                    <button type = "submit" class="btn btn-primary" formaction="/register/submit-account" formmethod="post" onClick="return validInput()">Register</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+    <div class="card text-white bg-danger mb-3" style="width: 40%; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px; margin-top: 10px;">
+            <div class="card-body">
+                <h6 class="card-title">The user you entered already exists.</h6>
+            </div>
+    </div>
+    </div>
+{{else}}
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="card" style="width: 40%; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
+            <div class="card-body">
+                <h4 class="card-title text-center text-primary">Create An Account</h4>
+                <form>
+                    <div class = "input">
+                        <label for = "username" style = "display: block;"> Username: </label>
+                        <input type = "text" class="form-control is-invalid" id = "username" name = "username" placeholder="Dr. Something">
+                    </div>
+                    <small id="invalid-username" style="display: none;">
+                        This is a mandatory field.
+                    </small>
+                    <div class = "input">
+                        <label for = "password" style = "display: block;"> Password: </label>
+                        <input type = "text" class="form-control is-invalid" id = "password" name = "password" placeholder="Password">
+                    </div>
+                    <small id="invalid-password-empty" style="display: none;">
+                        This is a mandatory field.
+                    </small>
+                    <small id="invalid-password-short" style="display: none;">
+                        Invalid Password. Your password must be 8-20 characters long, contain letters and numbers.
+                    </small>
+                    <div class = "input">
+                        <label for = "fullname" style = "display: block;"> Full Name: </label>
+                        <input type = "text" class="form-control" id = "fullname" name = "fullname" placeholder="Your full name">
+                    </div>
+                    <div class = "input">
+                        <label for = "specialty" style = "display: block;"> Specialty: </label>
+                        <input type = "text" class="form-control" id = "specialty" name = "specialty" placeholder="Your specialty">
+                    </div>
+                    <div class = "input">
+                        <label for = "dgp" style = "display: block;"> DGP Number: </label>
+                        <input type = "text" class="form-control" id = "dgp" name = "dgp" placeholder="000 0000">
+                    </div>
+                    
+                    <div class = "input">
+                        <label for = "gender" style = "display: block;"> Gender </label>
+                        <select class="form-control" id = "gender" name = "gender">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        </select>
+                    </div>
+                    <br/>
+                    <br/>
+                    <button type = "submit" class="btn btn-primary" formaction="/register/submit-account" formmethod="post" onClick="return validInput()">Register</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+{{/if}}
