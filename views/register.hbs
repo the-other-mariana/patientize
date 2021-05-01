@@ -1,19 +1,46 @@
+<script>
+    function validInput() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var regex = /\d/g;
+        if (username == "") {
+            $("#invalid-username").attr("style", "display: visible; color: crimson;");
+            return false;
+        }
+        if (password == "") {
+            $("#invalid-password-empty").attr("style", "display: visible; color: crimson;");
+            return false;
+        } else if (password.length < 6 || !regex.test(password)) {
+            $("#invalid-password-short").attr("style", "display: visible; color: crimson;");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
 <div class="d-flex align-items-center justify-content-center">
     <div class="card" style="width: 40%; box-shadow: 0 0 10px 0 rgba(63, 140, 255, 0.438); border-radius: 15px;">
         <div class="card-body">
             <h4 class="card-title text-center text-primary">Create An Account</h4>
             <form>
                 <div class = "input">
-                    <label for = "username" style = "display: block;"> *Username: </label>
+                    <label for = "username" style = "display: block;"> Username: </label>
                     <input type = "text" class="form-control is-invalid" id = "username" name = "username" placeholder="Dr. Something">
                 </div>
+                <small id="invalid-username" style="display: none;">
+                    This is a mandatory field.
+                </small>
                 <div class = "input">
-                    <label for = "password" style = "display: block;"> *Password: </label>
+                    <label for = "password" style = "display: block;"> Password: </label>
                     <input type = "text" class="form-control is-invalid" id = "password" name = "password" placeholder="Password">
                 </div>
-                <h6 style="color:crimson;">
-                    <i>*These are mandatory fields for registry.</i>
-                </h6>
+                <small id="invalid-password-empty" style="display: none;">
+                    This is a mandatory field.
+                </small>
+                <small id="invalid-password-short" style="display: none;">
+                    Invalid Password. Your password must be 8-20 characters long, contain letters and numbers.
+                </small>
                 <div class = "input">
                     <label for = "fullname" style = "display: block;"> Full Name: </label>
                     <input type = "text" class="form-control" id = "fullname" name = "fullname" placeholder="Your full name">
@@ -36,7 +63,7 @@
                 </div>
                 <br/>
                 <br/>
-                <button type = "submit" class="btn btn-primary" formaction="/register/submit-account" formmethod="post">Register</button>
+                <button type = "submit" class="btn btn-primary" formaction="/register/submit-account" formmethod="post" onClick="return validInput()">Register</button>
             </form>
         </div>
     </div>
